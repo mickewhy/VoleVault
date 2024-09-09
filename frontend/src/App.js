@@ -1,0 +1,42 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Collections from './pages/Collections'
+import Anomaluromorpha from './pages/Anomaluromorpha'
+import Castorimorpha from './pages/Castorimorpha'
+import Hystricomorpha from './pages/Hystricomorpha'
+import Myomorpha from './pages/Myomorpha'
+import Sciuromorpha from './pages/Sciuromorpha'
+import Submissions from './pages/Submissions'
+import NoPage from './pages/NoPage'
+import Navbar from './components/Navbar'
+import ImageDetails from './pages/ImageDetails'
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Navbar />
+        <div className='pages'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/collections' element={<Collections />} />
+            <Route path='/collections/anomaluromorpha' element={<Anomaluromorpha />} />
+            <Route path='/collections/castorimorpha' element={<Castorimorpha />} />
+            <Route path='/collections/hystricomorpha' element={<Hystricomorpha />} />
+            <Route path='/collections/myomorpha' element={<Myomorpha />} />
+            <Route path='/collections/sciuromorpha' element={<Sciuromorpha />} />
+            <Route path='/collections/anomaluromorpha/:rodentId' element={<ImageDetails />} />
+            <Route path='/collections/castorimorpha/:rodentId' element={<ImageDetails />} />
+            <Route path='/collections/hystricomorpha/:rodentId' element={<ImageDetails />} />
+            <Route path='/collections/myomorpha/:rodentId' element={<ImageDetails />} />
+            <Route path='/collections/sciuromorpha/:rodentId' element={<ImageDetails />} />
+            <Route path='/submissions' element={<Submissions />} />
+            <Route path='*' element={<NoPage />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </div>
+  )
+}
+
+export default App
