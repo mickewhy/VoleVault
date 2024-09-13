@@ -25,7 +25,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 10;
   /* Ensure the header is above other elements */
   border-bottom: 1px solid #333
 }
@@ -348,44 +348,83 @@ div.error {
 }
 
 .slideshow-image-details {
-  margin-left:100px;
-}
-
-.slideshow-image-container {
-  padding-top: 100px;
-  padding-bottom: 50px;
-  display: flex;
-  white-space: nowrap;
-  transition: transform 0.5s ease-in-out;
+  margin-top: 30px;
 }
 
 .slideshow-image {
+  cursor: zoom-in;
   width: auto;
-  height: 300px;
-  object-fit: cover;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slideshow-buttons {
-  display: flex;
-  gap:10px;
-}
-
-.active {
-  transform: scale(1.2);
+  height: 500px;
   z-index: 1;
+  transform: scale(1);
+}
+#fullpage {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: contain;
+  background-repeat: no-repeat no-repeat;
+  background-position: center center;
+  background-color: black;
+}
+.slideshow-image.zoom {
+  cursor: zoom-out;
+  z-index: 11;
+  transform-origin: 50% 50%; /* Center the transform origin */
 }
 
-.inactive {
-  transform: scale(0.8);
-  z-index: 0;
-  filter: blur(5px);
+.slideshow-thumbnails {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically (optional) */
+  margin: 2%;
+  gap: 10px;
+  /* Remove grid-gap and max-width not needed anymore */
 }
 
-.prev {
-  left: 20px;
+.slideshow-thumbnails img {
+  display: block;
+  width: 50px;
+  /* Set fixed width */
+  height: 50px;
+  /* Set fixed height for square */
+  object-fit: cover;
+  /* Maintain aspect ratio */
+  border: 2px solid #272727;
+  /* Add border inside wrapper */
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 
-.next {
-  right: 20px;
+.slideshow-thumbnail-wrapper {
+  cursor: pointer;
+  /* Removed border from wrapper as it's now applied to the image */
+}
+
+.slideshow-thumbnail-wrapper:hover img {
+  transform: scale(1.2);
+}
+
+.slideshow-thumbnail-wrapper .active {
+  transform: scale(1.2);
+}
+
+.slideshow-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  fill: white;
+  height: 50px;
+}
+
+.slideshow-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
