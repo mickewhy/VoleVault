@@ -25,8 +25,8 @@ const ImageDetails = () => {
   }
 
   return (
-    <div className="image-details">
-      <div className="image-container" style={{ transform: `translateX(${translateX}px)` }}>
+    <div className="slideshow-image-details">
+      <div className="slideshow-image-container" style={{ transform: `translateX(${translateX}px)` }}>
         {rodent?.links.map((link, index) => (
           <img
             key={index}
@@ -36,12 +36,14 @@ const ImageDetails = () => {
           />
         ))}
       </div>
-      <button className="prev" disabled={currentImageIndex === 0} onClick={handlePrevImage}>
-        ←
-      </button>
-      <button className="next" disabled={currentImageIndex === rodent.links.length - 1} onClick={handleNextImage}>
-        →
-      </button>
+      <div className="slideshow-buttons">
+        <button className="prev" disabled={currentImageIndex === 0} onClick={handlePrevImage}>
+          ←
+        </button>
+        <button className="next" disabled={currentImageIndex === rodent.links.length - 1} onClick={handleNextImage}>
+          →
+        </button>
+      </div>
     </div>
   )
 }

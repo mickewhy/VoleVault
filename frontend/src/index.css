@@ -347,11 +347,11 @@ div.error {
   background: #222;
 }
 
-.image-details {
-  text-align: center;
+.slideshow-image-details {
+  margin-left:100px;
 }
 
-.image-container {
+.slideshow-image-container {
   padding-top: 100px;
   padding-bottom: 50px;
   display: flex;
@@ -364,6 +364,11 @@ div.error {
   height: 300px;
   object-fit: cover;
   transition: transform 0.5s ease-in-out;
+}
+
+.slideshow-buttons {
+  display: flex;
+  gap:10px;
 }
 
 .active {
