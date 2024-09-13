@@ -169,6 +169,7 @@ const RodentForm = () => {
                 type='image'
                 onChange={(e) => setLinks(e.target.value)}
                 value={links}
+                alt='image'
             />
 
             <label>Summary:</label>

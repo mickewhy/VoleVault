@@ -51,7 +51,7 @@ const Hystricomorpha = () => {
             }, {})
         ).map(([family, links]) => (
             <div key={family} className="rodent-container">
-                <h3><i>{family}</i><span>({commonNames[family]})</span></h3>
+                <h3>{family}<span>({commonNames[family]})</span></h3>
                 <div className="image-grid">
                     {links.map(rodent => (
                         <div key={rodent._id} className="image-wrapper"

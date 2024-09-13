@@ -16,6 +16,16 @@ app.use((req, res, next) => {
 
 app.use('/collections', collectionRoutes)
 
+app.get('/hi', async (req, res) => {
+    try {
+      const r = await rodents.find(); // Fetch all rodents
+      res.json(r);
+      console.log(r)
+    } catch (error) {
+      console.error('Error fetching rodents:', error);
+      res.status(500).json({ error: 'Failed to fetch rodents' });
+    }
+  });
 // HOME
 app.get('/', (req, res) => {
     res.json({ mssg: 'GET home' })

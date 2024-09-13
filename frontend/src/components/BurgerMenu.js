@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Drawer from '@mui/material/Drawer'
-import Button from '@mui/material/Button'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
 import ListItem from '@mui/material/ListItem'
@@ -41,7 +40,7 @@ const BurgerMenu = () => {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index == 0 ? <HomeIcon /> : index == 1 ? <FormatListBulletedIcon /> : <PublishIcon />}
+                {index === 0 ? <HomeIcon /> : index === 1 ? <FormatListBulletedIcon /> : <PublishIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
