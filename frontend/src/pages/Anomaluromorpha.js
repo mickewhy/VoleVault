@@ -97,7 +97,12 @@ const Anomaluromorpha = () => {
                     <div>
                         {searchTerm && new URLSearchParams(window.location.search).get('search') ? (
                             filteredAnomaluromorpha.length > 0 ?
-                                (groupByFamily(filteredAnomaluromorpha)) : (<p>No results found.</p>)
+                                (groupByFamily(filteredAnomaluromorpha)) : (
+                                    <div className="no-results">
+                                        <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279476151582780/Castorimorpha.png?ex=66dc0d37&is=66dabbb7&hm=fb16efc46e334c745d9fbf9c3d40599d435b17f7f1ff40b00e5068b2ffb46fe8&" alt="Anomaluromorpha" />
+                                        <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
+                                    </div>
+                                )
                         ) : (groupByFamily(anomaluromorpha))}
                     </div>
                 )}

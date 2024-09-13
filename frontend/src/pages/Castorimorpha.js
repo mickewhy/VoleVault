@@ -61,7 +61,7 @@ const Castorimorpha = () => {
     useEffect(() => {
         if (!searchTerm) {
             setFilteredCastorimorpha([])
-            window.history.replaceState(null,'VoleVault','/collections/castorimorpha')
+            window.history.replaceState(null, 'VoleVault', '/collections/castorimorpha')
             return
         }
         const searchTermLowerCase = searchTerm.toLowerCase()
@@ -73,7 +73,7 @@ const Castorimorpha = () => {
             )
         })
         setFilteredCastorimorpha(filteredCastorimorpha)
-        window.history.replaceState(null,'VoleVault',`/collections/castorimorpha?search=${searchTerm}`)
+        window.history.replaceState(null, 'VoleVault', `/collections/castorimorpha?search=${searchTerm}`)
     }, [searchTerm])
 
     return (
@@ -97,7 +97,12 @@ const Castorimorpha = () => {
                     <div>
                         {searchTerm && new URLSearchParams(window.location.search).get('search') ? (
                             filteredCastorimorpha.length > 0 ?
-                                (groupByFamily(filteredCastorimorpha)) : (<p>No results found.</p>)
+                                (groupByFamily(filteredCastorimorpha)) : (
+                                    <div className="no-results">
+                                        <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279476151582780/Castorimorpha.png?ex=66dc0d37&is=66dabbb7&hm=fb16efc46e334c745d9fbf9c3d40599d435b17f7f1ff40b00e5068b2ffb46fe8&" alt="Castorimorpha" />
+                                        <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
+                                    </div>
+                                )
                         ) : (groupByFamily(castorimorpha))}
                     </div>
                 )}

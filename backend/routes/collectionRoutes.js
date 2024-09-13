@@ -13,7 +13,7 @@ const {
 
 // GET collections 4 button page
 router.get('/', (req, res) => {
-  res.json({ mssg: 'GET collections' })
+  res.json()
 })
 
 // GET rodents by suborder

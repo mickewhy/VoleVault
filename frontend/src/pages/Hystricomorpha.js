@@ -111,7 +111,12 @@ const Hystricomorpha = () => {
                     <div>
                         {searchTerm && new URLSearchParams(window.location.search).get('search') ? (
                             filteredHystricomorpha.length > 0 ?
-                                (groupByFamily(filteredHystricomorpha)) : (<p>No results found.</p>)
+                                (groupByFamily(filteredHystricomorpha)) : (
+                                    <div className="no-results">
+                                        <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279422602776596/Hystricomorpha.png?ex=66dc0d2b&is=66dabbab&hm=fda1137df82174d74eed32ed12aa4a2195723a08ce514e5504616d5531de4e57&" alt="Hystricomorpha" />
+                                        <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
+                                    </div>
+                                )
                         ) : (groupByFamily(hystricomorpha))}
                     </div>
                 )}
