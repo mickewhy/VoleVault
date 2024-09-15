@@ -77,36 +77,34 @@ const Castorimorpha = () => {
     }, [searchTerm])
 
     return (
-        <div className="collections">
-            <div className="Castorimorpha">
-                <div className="page-title">
-                    <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279476151582780/Castorimorpha.png?ex=66dc0d37&is=66dabbb7&hm=fb16efc46e334c745d9fbf9c3d40599d435b17f7f1ff40b00e5068b2ffb46fe8&" alt="Castorimorpha" />
-                    <h1>Castorimorpha</h1>
-                    <form>
-                        <div className="search-bar">
-                            <input
-                                type="text"
-                                placeholder="Search Castorimorpha..."
-                                value={searchTerm}
-                                onChange={(e) => { setSearchTerm(e.target.value) }}
-                            />
-                        </div>
-                    </form>
-                </div>
-                {castorimorpha && (
-                    <div>
-                        {searchTerm && new URLSearchParams(window.location.search).get('search') ? (
-                            filteredCastorimorpha.length > 0 ?
-                                (groupByFamily(filteredCastorimorpha)) : (
-                                    <div className="no-results">
-                                        <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279476151582780/Castorimorpha.png?ex=66dc0d37&is=66dabbb7&hm=fb16efc46e334c745d9fbf9c3d40599d435b17f7f1ff40b00e5068b2ffb46fe8&" alt="Castorimorpha" />
-                                        <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
-                                    </div>
-                                )
-                        ) : (groupByFamily(castorimorpha))}
+        <div>
+            <div className="page-title">
+                <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279476151582780/Castorimorpha.png?ex=66dc0d37&is=66dabbb7&hm=fb16efc46e334c745d9fbf9c3d40599d435b17f7f1ff40b00e5068b2ffb46fe8&" alt="Castorimorpha" />
+                <h1>Castorimorpha</h1>
+                <form>
+                    <div className="search-bar">
+                        <input
+                            type="text"
+                            placeholder="Search Castorimorpha..."
+                            value={searchTerm}
+                            onChange={(e) => { setSearchTerm(e.target.value) }}
+                        />
                     </div>
-                )}
+                </form>
             </div>
+            {castorimorpha && (
+                <div>
+                    {searchTerm && new URLSearchParams(window.location.search).get('search') ? (
+                        filteredCastorimorpha.length > 0 ?
+                            (groupByFamily(filteredCastorimorpha)) : (
+                                <div className="no-results">
+                                    <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279476151582780/Castorimorpha.png?ex=66dc0d37&is=66dabbb7&hm=fb16efc46e334c745d9fbf9c3d40599d435b17f7f1ff40b00e5068b2ffb46fe8&" alt="Castorimorpha" />
+                                    <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
+                                </div>
+                            )
+                    ) : (groupByFamily(castorimorpha))}
+                </div>
+            )}
         </div>
     )
 }

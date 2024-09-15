@@ -67,7 +67,7 @@ const Myomorpha = () => {
     useEffect(() => {
         if (!searchTerm) {
             setFilteredMyomorpha([])
-            window.history.replaceState(null,'VoleVault','/collections/myomorpha')
+            window.history.replaceState(null, 'VoleVault', '/collections/myomorpha')
             return
         }
         const searchTermLowerCase = searchTerm.toLowerCase()
@@ -79,12 +79,11 @@ const Myomorpha = () => {
             )
         })
         setFilteredMyomorpha(filteredMyomorpha)
-        window.history.replaceState(null,'VoleVault',`/collections/myomorpha?search=${searchTerm}`)
+        window.history.replaceState(null, 'VoleVault', `/collections/myomorpha?search=${searchTerm}`)
     }, [searchTerm])
 
     return (
-        <div className="collections">
-            <div className="Myomorpha">
+        <div>
                 <div className="page-title">
                     <img src="https://cdn.discordapp.com/attachments/932866678126161960/1244917657212555335/Myomorpha.png?ex=66dc02ea&is=66dab16a&hm=c9105221aac770488e054a4ef8a17c7718113a6f51e5bfe5aab7778eef1ea723&" alt="Myomorpha" />
                     <h1>Myomorpha</h1>
@@ -112,7 +111,6 @@ const Myomorpha = () => {
                         ) : (groupByFamily(myomorpha))}
                     </div>
                 )}
-            </div>
         </div>
     )
 }
