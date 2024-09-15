@@ -11,6 +11,8 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import PublishIcon from '@mui/icons-material/Publish'
 import PersonIcon from '@mui/icons-material/Person'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useNavigate } from 'react-router-dom'
+
 
 const BurgerMenu = () => {
   const [state, setState] = React.useState({
@@ -24,38 +26,54 @@ const BurgerMenu = () => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
-
     setState({ ...state, [anchor]: open })
   }
 
-  const list = (anchor) => (
+  const list = (anchor, navigate) => (
     <div
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
+      <List sx={{ paddingLeft: '16px', paddingRight: '16px' }}>
         {['Home', 'Collections', 'Submissions'].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
+            <ListItemButton sx={{
+              color: 'white',
+              // borderRadius: '10px',
+              '&:hover': {
+                backgroundColor: '#333',
+              },
+            }} onClick={() => navigate(
+              index === 0 ? '/' :
+                index === 1 ? '/collections' :
+                  index === 2 ? '/submissions' : ''
+            )}>
+              <ListItemIcon sx={{ color: 'white' }}>
                 {index === 0 ? <HomeIcon /> : index === 1 ? <FormatListBulletedIcon /> : <PublishIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text} sx={{ color: 'white' }} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <List>
+      <Divider sx={{ borderColor: '#222', maxWidth: '95%', justifySelf: 'center', margin: 'auto' }} />
+      <List sx={{ paddingLeft: '16px', paddingRight: '16px' }}>
         {['Contact'].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
+            <ListItemButton sx={{
+              color: 'white',
+              // borderRadius: '10px',
+              '&:hover': {
+                backgroundColor: '#333',
+              },
+            }} onClick={() => navigate(
+              index === 0 ? '/contact' : ''
+            )}>
+              <ListItemIcon sx={{ color: 'white' }}>
                 <PersonIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text} sx={{ color: 'white' }} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -75,7 +93,7 @@ const BurgerMenu = () => {
           >
             {list(anchor)}
           </Drawer>
-        </React.Fragment>
+        </React.Fragment>   
       ))} */}
       <React.Fragment>
         <MenuIcon
@@ -86,8 +104,20 @@ const BurgerMenu = () => {
           anchor={"top"}
           open={state["top"]}
           onClose={toggleDrawer("top", false)}
+          PaperProps={{
+            sx: {
+              border: '1px solid #222',
+              // borderBottomLeftRadius: '10px',
+              // borderBottomRightRadius: '10px',
+              // backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              backgroundColor: '#111',
+              width: '50%',
+              justifySelf: 'center',
+              overflow:'visible',
+            }
+          }}
         >
-          {list("top")}
+          {list("top", useNavigate())}
         </Drawer>
       </React.Fragment>
     </div>

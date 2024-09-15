@@ -19,12 +19,12 @@ body {
 }
 
 header {
+  position: fixed;
   margin: 0;
   background: #000;
-  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 10;
   border-bottom: 1px solid #333
 }
@@ -500,7 +500,7 @@ div.error {
   height: fit-content;
 }
 
-.copyright-speech-bubble p{
+.copyright-speech-bubble p {
   margin-top: 0px;
   margin-bottom: 0px;
 }

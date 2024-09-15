@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import BurgerMenu from './BurgerMenu'
 
 const Navbar = () => {
-  const [scrollY, setScrollY] = useState(0); // Initial scroll position
+  const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY); // Update scrollY on scroll event
-    };
+      setScrollY(window.scrollY)
+    }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
 
-    return () => window.removeEventListener('scroll', handleScroll); // Cleanup
-  }, []);
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <header>
@@ -24,7 +24,7 @@ const Navbar = () => {
         </Link>
       </div>
     </header>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
