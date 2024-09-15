@@ -61,9 +61,6 @@ const Hystricomorpha = () => {
                             <img
                                 src={rodent.links[0]}
                                 alt={rodent.family}
-                                //   onMouseEnter={() => console.log("Hover")}
-                                //   onMouseLeave={() => console.log("Leave Hover")}
-                                className="image"
                             />
                             <p className="image-overlay"><i>{rodent.binomialName}</i> <span>({rodent.commonName})</span></p>
                         </div>

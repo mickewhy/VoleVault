@@ -1,19 +1,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Collections from './pages/Collections'
+import Submissions from './pages/Submissions'
+import NoPage from './pages/NoPage'
+import Navbar from './components/Navbar'
+import ImageDetails from './pages/ImageDetails'
 import Anomaluromorpha from './pages/Anomaluromorpha'
 import Castorimorpha from './pages/Castorimorpha'
 import Hystricomorpha from './pages/Hystricomorpha'
 import Myomorpha from './pages/Myomorpha'
 import Sciuromorpha from './pages/Sciuromorpha'
-import Submissions from './pages/Submissions'
-import NoPage from './pages/NoPage'
-import Navbar from './components/Navbar'
-import ImageDetails from './pages/ImageDetails'
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         <Navbar />
         <div className='pages'>

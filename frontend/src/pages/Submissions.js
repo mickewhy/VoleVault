@@ -11,12 +11,12 @@ const Submissions = () => {
                 setSubmissions(json)
             }
         }
-
         fetchSubmissions()
     }, [])
+
     return (
-        <div className="submissions">
-            <div className="Submissions">
+        <div>
+            <div>
                 {submissions && submissions.map((castorimorph) => (
                     // <RodentDetails key={castorimorph._id} rodent={castorimorph}
                     // />

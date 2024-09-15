@@ -36,7 +36,7 @@ const Collections = () => {
                 <p><b>Sciuromorpha</b></p>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Collections;
+export default Collections
