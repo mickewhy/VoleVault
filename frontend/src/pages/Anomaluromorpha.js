@@ -76,7 +76,7 @@ const Anomaluromorpha = () => {
     return (
         <div>
             <div className="page-title">
-                <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279476151582780/Castorimorpha.png?ex=66dc0d37&is=66dabbb7&hm=fb16efc46e334c745d9fbf9c3d40599d435b17f7f1ff40b00e5068b2ffb46fe8&" alt="Anomaluromorpha" />
+                <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1285126081556385846/Anomaluromorpha.png?ex=66e9226e&is=66e7d0ee&hm=9798b9ec91620739252072063687a3fccb433c3d0f5a5761f328520386da6e6b&" alt="Anomaluromorpha" />
                 <h1>Anomaluromorpha</h1>
                 <form>
                     <div className="search-bar">
@@ -95,7 +95,7 @@ const Anomaluromorpha = () => {
                         filteredAnomaluromorpha.length > 0 ?
                             (groupByFamily(filteredAnomaluromorpha)) : (
                                 <div className="no-results">
-                                    <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279476151582780/Castorimorpha.png?ex=66dc0d37&is=66dabbb7&hm=fb16efc46e334c745d9fbf9c3d40599d435b17f7f1ff40b00e5068b2ffb46fe8&" alt="Anomaluromorpha" />
+                                    <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1285126081556385846/Anomaluromorpha.png?ex=66e9226e&is=66e7d0ee&hm=9798b9ec91620739252072063687a3fccb433c3d0f5a5761f328520386da6e6b&" alt="Anomaluromorpha" />
                                     <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
                                 </div>
                             )
