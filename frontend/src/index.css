@@ -284,6 +284,7 @@ input[type="file"] {
 }
 
 
+
 /* || Contact */
 /* TODO */
 
@@ -304,6 +305,11 @@ input[type="file"] {
 
 .rodent-container h3 span {
   font-size: 0.8em;
+  color: #484848;
+}
+
+.rodent-container ul span {
+  font-size: 0.9em;
   color: #484848;
 }
 
@@ -372,14 +378,15 @@ input[type="file"] {
 }
 
 .page-title h1 {
-  margin-left: 2px;
-  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .page-title img {
-  max-width: 120px;
+  max-width: 100px;
   height: auto;
   vertical-align: middle;
+  filter: drop-shadow(0.6pt 0.6pt 0 white) drop-shadow(-0.5pt -0.5pt 0 white);
 }
 
 .no-results {
@@ -560,4 +567,41 @@ input[type="file"] {
   right: 10px;
   font-size: 20px;
   cursor: pointer;
+}
+
+
+
+/* || Taxa */
+.taxa {
+  img {
+    cursor: pointer;
+  }
+
+  h1 {
+    font-size: 40px;
+    cursor: pointer;
+  }
+}
+
+.taxa-list {
+  margin-left: 50px;
+
+  h3 {
+    cursor: pointer;
+    font-size: 24px;
+  }
+
+  ul {
+    font-size: 18px;
+    list-style-type: none;
+
+    li {
+      cursor: pointer;
+      margin-bottom: 5px;
+    }
+
+    span {
+      margin-left: 10px;
+    }
+  }
 }

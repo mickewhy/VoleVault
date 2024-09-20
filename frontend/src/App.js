@@ -1,15 +1,16 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Collections from './pages/Collections'
-import Submissions from './pages/Submissions'
-import NoPage from './pages/NoPage'
-import Navbar from './components/Navbar'
-import ImageDetails from './pages/ImageDetails'
 import Anomaluromorpha from './pages/Anomaluromorpha'
 import Castorimorpha from './pages/Castorimorpha'
 import Hystricomorpha from './pages/Hystricomorpha'
 import Myomorpha from './pages/Myomorpha'
 import Sciuromorpha from './pages/Sciuromorpha'
+import ImageDetails from './pages/ImageDetails'
+import Submissions from './pages/Submissions'
+import Taxa from './pages/Taxa'
+import NoPage from './pages/NoPage'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path='/collections/myomorpha/:rodentId' element={<ImageDetails />} />
             <Route path='/collections/sciuromorpha/:rodentId' element={<ImageDetails />} />
             <Route path='/submissions' element={<Submissions />} />
+            <Route path='/taxa' element={<Taxa />} />
             <Route path='*' element={<NoPage />} />
           </Routes>
         </div>

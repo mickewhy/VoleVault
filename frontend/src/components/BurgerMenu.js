@@ -7,8 +7,9 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import HomeIcon from '@mui/icons-material/Home'
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import PublishIcon from '@mui/icons-material/Publish'
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import PersonIcon from '@mui/icons-material/Person'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useNavigate } from 'react-router-dom'
@@ -36,7 +37,7 @@ const BurgerMenu = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List sx={{ paddingLeft: '16px', paddingRight: '16px' }}>
-        {['Home', 'Collections', 'Submissions'].map((text, index) => (
+        {['Home', 'Collections', 'Submissions', 'Taxa List'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton sx={{
               color: 'white',
@@ -47,10 +48,14 @@ const BurgerMenu = () => {
             }} onClick={() => navigate(
               index === 0 ? '/' :
                 index === 1 ? '/collections' :
-                  index === 2 ? '/submissions' : ''
+                  index === 2 ? '/submissions' :
+                    '/taxa'
             )}>
               <ListItemIcon sx={{ color: 'white' }}>
-                {index === 0 ? <HomeIcon /> : index === 1 ? <FormatListBulletedIcon /> : <PublishIcon />}
+                {index === 0 ? <HomeIcon /> :
+                  index === 1 ? <DashboardIcon /> :
+                    index === 2 ? <PublishIcon /> :
+                      <FormatListBulletedIcon />}
               </ListItemIcon>
               <ListItemText primary={text} sx={{ color: 'white' }} />
             </ListItemButton>
@@ -113,7 +118,7 @@ const BurgerMenu = () => {
               backgroundColor: '#111',
               width: '50%',
               justifySelf: 'center',
-              overflow:'visible',
+              overflow: 'visible',
             }
           }}
         >

@@ -6,6 +6,7 @@ const {
   getHystricomorpha,
   getMyomorpha,
   getSciuromorpha,
+  getRodents,
   // getRodentsBySuborder,
   deleteRodent,
   updateRodent
@@ -22,6 +23,7 @@ router.get('/castorimorpha', getCastorimorpha)
 router.get('/hystricomorpha', getHystricomorpha)
 router.get('/myomorpha', getMyomorpha)
 router.get('/sciuromorpha', getSciuromorpha)
+router.get('/rodents', getRodents)
 // router.get('/:suborder', getRodentsBySuborder)
 
 // DELETE a single rodent

@@ -31,6 +31,12 @@ const getSciuromorpha = async (req, res) => {
     res.status(200).json(rodentQuery)
 }
 
+// Get all spp.
+const getRodents = async (req, res) => {
+    const rodentQuery = await rodents.find().sort({ family: 1, binomialName: 1 })
+    res.status(200).json(rodentQuery)
+}
+
 // const getRodentsBySuborder = async (req, res) => {
 //     const { suborder } = req.params
 //     const rodentQuery = await rodents.find({ suborder: suborder }).sort({ family: 1, binomialName: 1 })
@@ -68,6 +74,7 @@ module.exports = {
     getHystricomorpha,
     getMyomorpha,
     getSciuromorpha,
+    getRodents,
     // getRodentsBySuborder,
     deleteRodent,
     updateRodent
