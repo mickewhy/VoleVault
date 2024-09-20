@@ -173,23 +173,27 @@ header a {
 
 
 /* || Submissions */
-label,
-input {
-  display: block;
-}
-
-input {
-  width: 80%;
+input,
+textarea {
+  resize: none;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  font-family: "Barlow Semi Condensed";
 }
 
 form button {
   border: 0;
   color: #fff;
   padding: 10px;
-  font-family: "Poppins";
+  font-family: "Barlow Semi Condensed";
   border-radius: 4px;
   cursor: pointer;
 }
@@ -203,6 +207,81 @@ div.error {
   margin: 20px 0;
 }
 
+.form-container {
+  padding-left: 10%;
+  padding-right: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-stacked {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+
+  @media (max-width: 930px) {
+    flex-direction: column;
+  }
+}
+
+.form-stacked>* {
+  flex: 1 0 auto;
+}
+
+.form-stacked p {
+  margin-top: 0;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+  width: 20px;
+}
+
+.form-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-checkbox label {
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+#paragraph,
+#paragraph-credit {
+  height: 200px;
+}
+
+input[type="file"] {
+  padding: 10px;
+  cursor: pointer;
+}
+
+::file-selector-button {
+  display: none;
+}
+
+.option-menu {
+  word-wrap: break-word;
+}
+
+.option-menu-list {
+  height: 0;
+  opacity: 0;
+  transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.option-menu.open .option-menu-list {
+  height: auto;
+  opacity: 1;
+}
+
+.option-menu input {
+  cursor: pointer;
+}
 
 
 /* || Contact */
@@ -301,22 +380,6 @@ div.error {
   max-width: 120px;
   height: auto;
   vertical-align: middle;
-}
-
-.search-bar {
-  width: 20vw;
-  border-radius: 4px;
-  justify-content: center;
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 10px;
-  background-color: #333;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  outline: none;
 }
 
 .no-results {

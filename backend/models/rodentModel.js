@@ -6,7 +6,7 @@ const rodentSchema = new mongoose.Schema({
     suborder: { type: String, enum: ["Anomaluromorpha", "Castorimorpha", "Hystricomorpha", "Myomorpha", "Sciuromorpha"], required: true, unique: false },
     family: { type: String, required: true, unique: false },
     sex: { type: String, enum: ["Male", "Female"], required: false, unique: false },
-    age: { type: String, required: false, unique: false },
+    age: { type: String, enum: ["Juvenile", "Subadult", "Adult", "Geriatric Adult"], required: false, unique: false },
     origin: { type: String, required: false, unique: false },
     dateOfAcquisition: { type: Date, required: true, unique: false },
     causeOfDeath: { type: String, required: false, unique: false },
@@ -14,9 +14,7 @@ const rodentSchema = new mongoose.Schema({
     cleaningMethod: { type: String, required: false, unique: false },
     notes: { type: String, required: false, unique: false },
     links: { type: Array, required: true, unique: false, validate: [arrayLimit, '{PATH} exceeds the limit of 6'] },
-    summary: { type: String, required: false, unique: false },
     credit: { type: String, required: true, unique: false },
-    creditLink: { type: String, required: false, unique: false },
     contactInfo: { type: String, required: true, unique: false },
     copyrightInfo: { type: String, required: false, unique: false },
 }, { timestamps: true })
