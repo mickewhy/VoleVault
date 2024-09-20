@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const commonNames = {
+export const commonNames = {
     'Ctenodactylidae': 'Gundis',
     'Diatomyidae': 'Khanyou',
     'Caviidae': 'Cavies',
@@ -22,20 +22,18 @@ const commonNames = {
 }
 
 const Hystricomorpha = () => {
-    const [hystricomorpha, setHystricomorpha] = useState(null)
-    const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate()
+    const [hystricomorpha, setHystricomorpha] = useState(null)
+    const [searchTerm, setSearchTerm] = useState(new URLSearchParams(window.location.search).get('search'))
     const [filteredHystricomorpha, setFilteredHystricomorpha] = useState([])
 
     useEffect(() => {
         const fetchHystricomorpha = async () => {
             const response = await fetch('/collections/hystricomorpha')
             const json = await response.json()
-            if (response.ok) {
+            if (response.ok)
                 setHystricomorpha(json)
-            }
         }
-
         fetchHystricomorpha()
     }, [])
 
@@ -43,9 +41,8 @@ const Hystricomorpha = () => {
         Object.entries(
             data.reduce((groupedImages, hystricomorph) => {
                 const family = hystricomorph.family
-                if (!groupedImages[family]) {
+                if (!groupedImages[family])
                     groupedImages[family] = []
-                }
                 groupedImages[family].push(hystricomorph)
                 return groupedImages
             }, {})
@@ -70,6 +67,7 @@ const Hystricomorpha = () => {
         ))
 
     useEffect(() => {
+        if (!hystricomorpha) return
         if (!searchTerm) {
             setFilteredHystricomorpha([])
             window.history.replaceState(null, 'VoleVault', '/collections/hystricomorpha')
@@ -85,7 +83,7 @@ const Hystricomorpha = () => {
         })
         setFilteredHystricomorpha(filteredHystricomorpha)
         window.history.replaceState(null, 'VoleVault', `/collections/hystricomorpha?search=${searchTerm}`)
-    }, [searchTerm])
+    }, [searchTerm, hystricomorpha])
 
     return (
         <div>

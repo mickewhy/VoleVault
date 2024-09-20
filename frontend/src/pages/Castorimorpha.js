@@ -1,27 +1,25 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const commonNames = {
+export const commonNames = {
     'Castoridae': 'Beavers',
     'Geomyidae': 'Pocket Gophers',
     'Heteromyidae': 'Kangaroo Rats and Pocket Mice',
 }
 
 const Castorimorpha = () => {
-    const [castorimorpha, setCastorimorpha] = useState(null)
-    const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate()
+    const [castorimorpha, setCastorimorpha] = useState(null)
+    const [searchTerm, setSearchTerm] = useState(new URLSearchParams(window.location.search).get('search'))
     const [filteredCastorimorpha, setFilteredCastorimorpha] = useState([])
 
     useEffect(() => {
         const fetchCastorimorpha = async () => {
             const response = await fetch('/collections/castorimorpha')
             const json = await response.json()
-            if (response.ok) {
+            if (response.ok)
                 setCastorimorpha(json)
-            }
         }
-
         fetchCastorimorpha()
     }, [])
 
@@ -29,9 +27,8 @@ const Castorimorpha = () => {
         Object.entries(
             data.reduce((groupedImages, castorimorph) => {
                 const family = castorimorph.family
-                if (!groupedImages[family]) {
+                if (!groupedImages[family])
                     groupedImages[family] = []
-                }
                 groupedImages[family].push(castorimorph)
                 return groupedImages
             }, {})
@@ -56,6 +53,7 @@ const Castorimorpha = () => {
         ))
 
     useEffect(() => {
+        if (!castorimorpha) return
         if (!searchTerm) {
             setFilteredCastorimorpha([])
             window.history.replaceState(null, 'VoleVault', '/collections/castorimorpha')
@@ -71,7 +69,7 @@ const Castorimorpha = () => {
         })
         setFilteredCastorimorpha(filteredCastorimorpha)
         window.history.replaceState(null, 'VoleVault', `/collections/castorimorpha?search=${searchTerm}`)
-    }, [searchTerm])
+    }, [searchTerm, castorimorpha])
 
     return (
         <div>

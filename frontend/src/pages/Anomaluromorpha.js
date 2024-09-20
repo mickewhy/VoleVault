@@ -1,27 +1,25 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const commonNames = {
+export const commonNames = {
     'Anomaluridae': 'Anomalures',
     'Pedetidae': 'Springhares',
     'Zenkerellidae': 'Flightless Anomalures',
 }
 
 const Anomaluromorpha = () => {
-    const [anomaluromorpha, setAnomaluromorpha] = useState(null)
-    const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate()
+    const [anomaluromorpha, setAnomaluromorpha] = useState(null)
+    const [searchTerm, setSearchTerm] = useState(new URLSearchParams(window.location.search).get('search'))
     const [filteredAnomaluromorpha, setFilteredAnomaluromorpha] = useState([])
 
     useEffect(() => {
         const fetchAnomaluromorpha = async () => {
             const response = await fetch('/collections/anomaluromorpha')
             const json = await response.json()
-            if (response.ok) {
+            if (response.ok)
                 setAnomaluromorpha(json)
-            }
         }
-
         fetchAnomaluromorpha()
     }, [])
 
@@ -29,9 +27,8 @@ const Anomaluromorpha = () => {
         Object.entries(
             data.reduce((groupedImages, anomaluromorph) => {
                 const family = anomaluromorph.family
-                if (!groupedImages[family]) {
+                if (!groupedImages[family])
                     groupedImages[family] = []
-                }
                 groupedImages[family].push(anomaluromorph)
                 return groupedImages
             }, {})
@@ -56,6 +53,7 @@ const Anomaluromorpha = () => {
         ))
 
     useEffect(() => {
+        if (!anomaluromorpha) return
         if (!searchTerm) {
             setFilteredAnomaluromorpha([])
             window.history.replaceState(null, 'VoleVault', '/collections/anomaluromorpha')
@@ -71,7 +69,7 @@ const Anomaluromorpha = () => {
         })
         setFilteredAnomaluromorpha(filteredAnomaluromorpha)
         window.history.replaceState(null, 'VoleVault', `/collections/anomaluromorpha?search=${searchTerm}`)
-    }, [searchTerm])
+    }, [searchTerm, anomaluromorpha])
 
     return (
         <div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const commonNames = {
+export const commonNames = {
     'Dipodidae': 'Jerboas',
     'Sminthidae': 'Birch Mice',
     'Zapodidae': 'Jumping Mice',
@@ -14,20 +14,18 @@ const commonNames = {
 }
 
 const Myomorpha = () => {
-    const [myomorpha, setMyomorpha] = useState(null)
-    const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate()
+    const [myomorpha, setMyomorpha] = useState(null)
+    const [searchTerm, setSearchTerm] = useState(new URLSearchParams(window.location.search).get('search'))
     const [filteredMyomorpha, setFilteredMyomorpha] = useState([])
 
     useEffect(() => {
         const fetchMyomorpha = async () => {
             const response = await fetch('/collections/myomorpha')
             const json = await response.json()
-            if (response.ok) {
+            if (response.ok)
                 setMyomorpha(json)
-            }
         }
-
         fetchMyomorpha()
     }, [])
 
@@ -35,9 +33,8 @@ const Myomorpha = () => {
         Object.entries(
             data.reduce((groupedImages, myomorph) => {
                 const family = myomorph.family
-                if (!groupedImages[family]) {
+                if (!groupedImages[family])
                     groupedImages[family] = []
-                }
                 groupedImages[family].push(myomorph)
                 return groupedImages
             }, {})
@@ -62,6 +59,7 @@ const Myomorpha = () => {
         ))
 
     useEffect(() => {
+        if (!myomorpha) return
         if (!searchTerm) {
             setFilteredMyomorpha([])
             window.history.replaceState(null, 'VoleVault', '/collections/myomorpha')
@@ -77,37 +75,37 @@ const Myomorpha = () => {
         })
         setFilteredMyomorpha(filteredMyomorpha)
         window.history.replaceState(null, 'VoleVault', `/collections/myomorpha?search=${searchTerm}`)
-    }, [searchTerm])
+    }, [searchTerm, myomorpha])
 
     return (
         <div>
-                <div className="page-title">
-                    <img src="https://cdn.discordapp.com/attachments/932866678126161960/1244917657212555335/Myomorpha.png?ex=66dc02ea&is=66dab16a&hm=c9105221aac770488e054a4ef8a17c7718113a6f51e5bfe5aab7778eef1ea723&" alt="Myomorpha" />
-                    <h1>Myomorpha</h1>
-                    <form>
-                        <div className="search-bar">
-                            <input
-                                type="text"
-                                placeholder="Search Myomorpha..."
-                                value={searchTerm}
-                                onChange={(e) => { setSearchTerm(e.target.value) }}
-                            />
-                        </div>
-                    </form>
-                </div>
-                {myomorpha && (
-                    <div>
-                        {searchTerm && new URLSearchParams(window.location.search).get('search') ? (
-                            filteredMyomorpha.length > 0 ?
-                                (groupByFamily(filteredMyomorpha)) : (
-                                    <div className="no-results">
-                                        <img src="https://cdn.discordapp.com/attachments/932866678126161960/1244917657212555335/Myomorpha.png?ex=66dc02ea&is=66dab16a&hm=c9105221aac770488e054a4ef8a17c7718113a6f51e5bfe5aab7778eef1ea723&" alt="Myomorpha" />
-                                        <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
-                                    </div>
-                                )
-                        ) : (groupByFamily(myomorpha))}
+            <div className="page-title">
+                <img src="https://cdn.discordapp.com/attachments/932866678126161960/1244917657212555335/Myomorpha.png?ex=66dc02ea&is=66dab16a&hm=c9105221aac770488e054a4ef8a17c7718113a6f51e5bfe5aab7778eef1ea723&" alt="Myomorpha" />
+                <h1>Myomorpha</h1>
+                <form>
+                    <div className="search-bar">
+                        <input
+                            type="text"
+                            placeholder="Search Myomorpha..."
+                            value={searchTerm}
+                            onChange={(e) => { setSearchTerm(e.target.value) }}
+                        />
                     </div>
-                )}
+                </form>
+            </div>
+            {myomorpha && (
+                <div>
+                    {searchTerm && new URLSearchParams(window.location.search).get('search') ? (
+                        filteredMyomorpha.length > 0 ?
+                            (groupByFamily(filteredMyomorpha)) : (
+                                <div className="no-results">
+                                    <img src="https://cdn.discordapp.com/attachments/932866678126161960/1244917657212555335/Myomorpha.png?ex=66dc02ea&is=66dab16a&hm=c9105221aac770488e054a4ef8a17c7718113a6f51e5bfe5aab7778eef1ea723&" alt="Myomorpha" />
+                                    <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
+                                </div>
+                            )
+                    ) : (groupByFamily(myomorpha))}
+                </div>
+            )}
         </div>
     )
 }
