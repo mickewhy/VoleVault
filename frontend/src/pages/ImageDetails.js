@@ -65,37 +65,6 @@ const ImageDetails = () => {
     activeImage.style.transform = transform
   }
 
-
-  const copyrightButton = () => {
-    const copyrightButton = document.querySelector('.copyright-button')
-    const speechBubble = document.querySelector('.copyright-speech-bubble')
-    if (speechBubble.style.display === 'none') {
-      speechBubble.style.top = `${copyrightButton.offsetTop - speechBubble.offsetHeight-40}px`
-      speechBubble.style.left = `${copyrightButton.offsetLeft}px`
-      speechBubble.style.display = 'block'
-      setTimeout(() => {
-        speechBubble.style.opacity = 1
-      }, 1)
-    } else {
-      speechBubble.style.opacity = 0
-      setTimeout(() => {
-        speechBubble.style.display = 'none'
-      }, 300)
-    }
-
-    function handleOutsideClick(event) {
-      if (!speechBubble.contains(event.target) && !copyrightButton.contains(event.target)) {
-        speechBubble.style.opacity = 0
-        setTimeout(() => {
-          speechBubble.style.display = 'none'
-          document.removeEventListener('click', handleOutsideClick)
-        }, 300)
-      }
-    }
-
-    document.addEventListener('click', handleOutsideClick)
-  }
-
   return (
     <div className="slideshow-details">
       <div className="slideshow-main">
@@ -126,10 +95,7 @@ const ImageDetails = () => {
             alt={`${currentImageIndex + 1}`}
             onClick={handlePopUp}
           />
-          <button className="copyright-button" onClick={copyrightButton}>©</button>
-          <div className="copyright-speech-bubble" style={{ display: "none" }}>
-            <p>{rodent.copyrightInfo ? rodent.copyrightInfo : "Copyright information not specified."}</p>
-          </div>
+          <button data-tippy={rodent.copyrightInfo ? rodent.copyrightInfo : "Copyright information not specified."} data-tippy-animate="fade" data-tippy-size="large" data-tippy-pos="up" className="copyright-button">©</button>
         </div>
         <button type="button" onClick={handleNextImage} className="slideshow-button" title="Next Photo">
           <svg fill="white" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 512 512">
