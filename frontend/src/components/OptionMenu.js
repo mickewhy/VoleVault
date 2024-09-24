@@ -1,35 +1,43 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
 
-const OptionMenu = ({ options, onSelect }) => {
-    const [isOpen, setIsOpen] = useState(false)
+const OptionMenu = ({ options, onSelect, placeholder }) => {
     const inputRef = useRef(null)
-    const [selectedOption, setSelectedOption] = useState(options[0].label + " (" + options[0].displayText + ")")
+    const [isOpen, setIsOpen] = useState(false)
+    const [selectedOption, setSelectedOption] = useState('')
 
     const handleClick = () => {
         setIsOpen(!isOpen)
     }
 
     const handleOptionSelect = (option) => {
-        setSelectedOption(option.label + " (" + option.displayText + ")")
+        let selectedText = option.label + (option.displayText ? " (" + option.displayText + ")" : '')
+        setSelectedOption(selectedText)
         onSelect(option.label)
         setIsOpen(false)
     }
 
+    const inputWidth = useRef(0)
+    useEffect(() => {
+        if (inputRef.current)
+            inputWidth.current = inputRef.current.offsetWidth
+    }, [isOpen])
+
     return (
-        <div className={`option-menu ${isOpen ? 'open' : ''}`}>
+        <div className={`option-menu${isOpen ? ' open' : ''}`}>
             <input
                 ref={inputRef}
                 onClick={handleClick}
                 readOnly
                 value={selectedOption}
+                placeholder={placeholder || ''}
             />
             {isOpen && (
-                <List sx={{ paddingLeft: 0, paddingRight: 0, backgroundColor: '#111' }}>
+                <List sx={{ paddingLeft: 0, paddingRight: 0, backgroundColor: '#111', position: 'absolute', width: inputWidth.current + 'px' }}>
                     {options.map((option) => (
                         <ListItem key={option.label} disablePadding>
                             <ListItemButton
@@ -42,7 +50,7 @@ const OptionMenu = ({ options, onSelect }) => {
                                 }}
                             >
                                 <ListItemIcon sx={{ color: 'white', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                                    <img style={{ maxWidth: '100px', height: 'auto' }} src={option.image} alt={option.label} />
+                                    {option.image ? <img style={{ maxWidth: '100px', height: 'auto' }} src={option.image} alt={option.label} /> : ''}
                                     <ListItemText disableTypography primary={option.label} sx={{ color: 'white', fontFamily: "Barlow Semi Condensed" }} />
                                 </ListItemIcon>
                             </ListItemButton>

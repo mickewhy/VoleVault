@@ -72,9 +72,120 @@ const RodentForm = () => {
         else {
             creditTextarea.style.backgroundColor = '#333'
             creditTextarea.style.color = '#fff'
-            creditTextarea.placeholder='Give yourself submission credit here.\nYou may enter your full or abbreviated legal name, your facility, or an online pseudonym.\nIf you don’t want public credit, select ‘Private Collection’.'
+            creditTextarea.placeholder = 'Give yourself submission credit here.\nYou may enter your full or abbreviated legal name, your facility, or an online pseudonym.\nIf you don’t want public credit, select ‘Private Collection’.'
         }
     }
+
+    const suborderOptions = [
+        {
+            label: 'Anomaluromorpha',
+        },
+        {
+            label: 'Castorimorpha',
+        },
+        {
+            label: 'Hystricomorpha',
+        },
+        {
+            label: 'Myomorpha',
+        },
+        {
+            label: 'Sciuromorpha',
+        },
+    ]
+
+    const sexOptions = [
+        {
+            label: 'Male',
+        },
+        {
+            label: 'Female',
+        },
+        {
+            label: 'Unspecified',
+        },
+    ]
+
+    const ageOptions = [
+        {
+            label: 'Juvenile',
+        },
+        {
+            label: 'Subadult',
+        },
+        {
+            label: 'Adult',
+        },
+        {
+            label: 'Geriatric Adult',
+        },
+        {
+            label: 'Unspecified',
+        },
+    ]
+
+    const causeOfDeathOptions = [
+        {
+            label: 'Vehicular Collision',
+        },
+        {
+            label: 'Trapped',
+        },
+        {
+            label: 'Hunted',
+        },
+        {
+            label: 'Non-Human Predation',
+        },
+        {
+            label: 'Poisoned',
+        },
+        {
+            label: 'Infection',
+        },
+        {
+            label: 'Starvation',
+        },
+        {
+            label: 'Drowning',
+        },
+        {
+            label: 'Unknown',
+        },
+        {
+            label: 'Other',
+        },
+    ]
+
+    const cleaningMethodOptions = [
+        {
+            label: 'Maceration',
+        },
+        {
+            label: 'Beetle-Cleaned',
+        },
+        {
+            label: 'Maggot-Cleaned',
+        },
+        {
+            label: 'Nature-Cleaned',
+        },
+        {
+            label: 'Oxidation',
+        },
+        {
+            label: 'Burial',
+        },
+        {
+            label: 'Simmered / Boiled',
+        },
+        {
+            label: 'Unknown',
+        },
+        {
+            label: 'Other',
+        },
+    ]
 
     const copyrightOptions = [
         {
@@ -114,19 +225,16 @@ const RodentForm = () => {
         },
     ]
 
-    const [selectedCopyright, setSelectedCopyright] = useState('')
-
-    const handleCopyrightSelect = (option) => {
-        setSelectedCopyright(option)
+    const optionMenuClick = () => {
+        document.addEventListener('click', () => { console.log('hi') }, { once:true })
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Add a new rodent</h2>
             <div className='form-container'>
                 <div className="form-stacked">
                     <div>
-                        <h3>Common Name:</h3>
+                        <h3>Common Name<span>*</span></h3>
                         <input
                             type='text'
                             onChange={(e) => setCommonName(e.target.value)}
@@ -136,7 +244,7 @@ const RodentForm = () => {
                     </div>
 
                     <div>
-                        <h3>Binomial Name:</h3>
+                        <h3>Binomial Name<span>*</span></h3>
                         <input
                             type='text'
                             onChange={(e) => setBinomialName(e.target.value)}
@@ -148,25 +256,18 @@ const RodentForm = () => {
 
                 <div className="form-stacked">
                     <div>
-                        <h3>Suborder:</h3>
-                        <input
-                            type='text'
-                            onChange={(e) => setSuborder(e.target.value)}
+                        <h3>Suborder<span>*</span></h3>
+                        <OptionMenu
+                            options={suborderOptions}
+                            onSelect={(option) => { setSuborder(option) }}
                             value={suborder}
-                            list='suborders'
                             placeholder='Myomorpha'
+                            onClick={console.log('mik')}
                         />
-                        <datalist id='suborders'>
-                            <option value='Anomaluromorpha' />
-                            <option value='Castorimorpha' />
-                            <option value='Hystricomorpha' />
-                            <option value='Myomorpha' />
-                            <option value='Sciuromorpha' />
-                        </datalist>
                     </div>
 
                     <div>
-                        <h3>Family:</h3>
+                        <h3>Family<span>*</span></h3>
                         <input
                             type='text'
                             onChange={(e) => setFamily(e.target.value)}
@@ -178,42 +279,28 @@ const RodentForm = () => {
 
                 <div className="form-stacked">
                     <div>
-                        <h3>Sex:</h3>
-                        <input
-                            type='text'
-                            onChange={(e) => setSex(e.target.value)}
+                        <h3>Sex</h3>
+                        <OptionMenu
+                            options={sexOptions}
+                            onSelect={(option) => { setSex(option) }}
                             value={sex}
-                            list='sexes'
                             placeholder='Male, Female, etc.'
                         />
-                        <datalist id='sexes'>
-                            <option value='Male' />
-                            <option value='Female' />
-                            <option value='Unspecified' />
-                        </datalist>
                     </div>
 
                     <div>
-                        <h3>Age Class:</h3>
-                        <input
-                            type='text'
-                            onChange={(e) => setAge(e.target.value)}
+                        <h3>Age Class</h3>
+                        <OptionMenu
+                            options={ageOptions}
+                            onSelect={(option) => { setAge(option) }}
                             value={age}
-                            list='ages'
                             placeholder='General age range'
                         />
-                        <datalist id='ages'>
-                            <option value='Juvenile' />
-                            <option value='Subadult' />
-                            <option value='Adult' />
-                            <option value='Geriatric Adult' />
-                            <option value='Unspecified' />
-                        </datalist>
                     </div>
                 </div>
 
                 <div>
-                    <h3>Origin:</h3>
+                    <h3>Origin</h3>
                     <div className="form-stacked">
                         <div>
                             <p>County</p>
@@ -246,7 +333,7 @@ const RodentForm = () => {
                 </div>
 
                 <div>
-                    <h3>Date of Acquisition:</h3>
+                    <h3>Date of Acquisition<span>*</span></h3>
                     <input
                         type='date'
                         onChange={(e) => setDateOfAcquisition(e.target.value)}
@@ -255,30 +342,17 @@ const RodentForm = () => {
                 </div>
 
                 <div>
-                    <h3>Cause of Death:</h3>
-                    <input
-                        type='text'
-                        onChange={(e) => setCauseOfDeath(e.target.value)}
+                    <h3>Cause of Death</h3>
+                    <OptionMenu
+                        options={causeOfDeathOptions}
+                        onSelect={(option) => { setCauseOfDeath(option) }}
                         value={causeOfDeath}
-                        list='causes'
                         placeholder='How the rodent died, if known'
                     />
-                    <datalist id='causes'>
-                        <option value='Vehicular Collision' />
-                        <option value='Trapped' />
-                        <option value='Hunted' />
-                        <option value='Non-Human Predation' />
-                        <option value='Poisoned' />
-                        <option value='Infection' />
-                        <option value='Starvation' />
-                        <option value='Drowning' />
-                        <option value='Unknown' />
-                        <option value='Other' />
-                    </datalist>
                 </div>
 
                 <div>
-                    <h3>Required Dimensions:</h3>
+                    <h3>Required Dimensions<span>*</span></h3>
                     <div className="form-stacked">
                         <div>
                             <p>Condylobasal Length</p>
@@ -311,7 +385,7 @@ const RodentForm = () => {
                 </div>
 
                 <div>
-                    <h3>Optional Dimensions:</h3>
+                    <h3>Optional Dimensions</h3>
                     <div className="form-stacked">
                         <div>
                             <p>Foramen Incisivum Length</p>
@@ -344,29 +418,17 @@ const RodentForm = () => {
                 </div>
 
                 <div>
-                    <h3>Cleaning Method:</h3>
-                    <input
-                        type='text'
-                        onChange={(e) => setCleaningMethod(e.target.value)}
+                    <h3>Cleaning Method</h3>
+                    <OptionMenu
+                        options={cleaningMethodOptions}
+                        onSelect={(option) => { setCleaningMethod(option) }}
                         value={cleaningMethod}
-                        list='methods'
                         placeholder='How the skull was cleaned'
                     />
-                    <datalist id='methods'>
-                        <option value='Maceration' />
-                        <option value='Beetle-Cleaned' />
-                        <option value='Maggot-Cleaned' />
-                        <option value='Nature-Cleaned' />
-                        <option value='Oxidation' />
-                        <option value='Burial' />
-                        <option value='Simmered / Boiled' />
-                        <option value='Unknown' />
-                        <option value='Other' />
-                    </datalist>
                 </div>
 
                 <div>
-                    <h3>Notes:</h3>
+                    <h3>Notes</h3>
                     <textarea
                         id="paragraph"
                         type='text'
@@ -377,7 +439,7 @@ const RodentForm = () => {
                 </div>
 
                 <div>
-                    <h3>Links:</h3>
+                    <h3>Links<span>*</span></h3>
                     <input
                         type='file'
                         onChange={(e) => setLinks(e.target.value)}
@@ -388,7 +450,7 @@ const RodentForm = () => {
                 </div>
 
                 <div>
-                    <h3>Credit:</h3>
+                    <h3>Credit<span>*</span></h3>
                     <textarea
                         id="paragraph-credit"
                         type='text'
@@ -403,18 +465,18 @@ const RodentForm = () => {
                 </div>
 
                 <div>
-                    <h3>Copyright Information:</h3>
-                    <div className='copyright-container'>
-                        <OptionMenu
-                            options={copyrightOptions}
-                            onSelect={handleCopyrightSelect}
-                            value={selectedCopyright}
-                        />
-                    </div>
+                    <h3>Copyright Information</h3>
+                    <OptionMenu
+                        options={copyrightOptions}
+                        onSelect={(option) => { setCopyrightInfo(option) }}
+                        value={copyrightInfo}
+                        placeholder='No Copyright (CC0)'
+                    />
                 </div>
+                <br></br>
+                <button>Add Rodent</button>
             </div>
 
-            <button>Add Rodent</button>
             {error && <div className='error'>{error}</div>}
         </form>
     )

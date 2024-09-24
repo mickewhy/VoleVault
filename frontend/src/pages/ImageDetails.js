@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useLocation } from "react-router-dom"
 
 const ImageDetails = () => {
@@ -26,9 +26,9 @@ const ImageDetails = () => {
     if (activeImage) {
       activeImage.classList.toggle('zoom')
 
-      if (activeImage.classList.contains('zoom')) {
+      if (activeImage.classList.contains('zoom'))
         activeImage.addEventListener('mousemove', handleMouseMove)
-      } else {
+      else {
         activeImage.removeEventListener('mousemove', handleMouseMove)
         activeImage.style.transform = 'none'
       }
@@ -43,9 +43,8 @@ const ImageDetails = () => {
         closePopUp()
     })
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape')
         closePopUp()
-      }
     })
   }
 

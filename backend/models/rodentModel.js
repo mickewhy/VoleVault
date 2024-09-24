@@ -15,7 +15,6 @@ const rodentSchema = new mongoose.Schema({
     notes: { type: String, required: false, unique: false },
     links: { type: Array, required: true, unique: false, validate: [arrayLimit, '{PATH} exceeds the limit of 6'] },
     credit: { type: String, required: true, unique: false },
-    contactInfo: { type: String, required: true, unique: false },
     copyrightInfo: { type: String, required: false, unique: false },
 }, { timestamps: true })
 
