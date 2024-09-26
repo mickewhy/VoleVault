@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 import Home from './pages/Home'
 import Collections from './pages/Collections'
 import Anomaluromorpha from './pages/Anomaluromorpha'
@@ -20,6 +22,8 @@ function App() {
         <div className='pages'>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
             <Route path='/collections' element={<Collections />} />
             <Route path='/collections/anomaluromorpha' element={<Anomaluromorpha />} />
             <Route path='/collections/castorimorpha' element={<Castorimorpha />} />
