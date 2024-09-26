@@ -3,8 +3,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const collectionRoutes = require('./routes/collectionRoutes')
+const userRoutes = require('./routes/userRoutes')
 const rodents = require('./models/rodentModel')
-// const { createRodent } = require('../controllers/controller')
 
 //Middleware
 app.use(express.json())
@@ -12,6 +12,7 @@ app.use(express.json())
 app.use((req, res, next) => { next() })
 
 app.use('/collections', collectionRoutes)
+app.use('/user', userRoutes)
 
 // HOME
 app.get('/', (req, res) => {

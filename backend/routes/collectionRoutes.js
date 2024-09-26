@@ -7,10 +7,9 @@ const {
   getMyomorpha,
   getSciuromorpha,
   getRodents,
-  // getRodentsBySuborder,
   deleteRodent,
   updateRodent
-} = require('../controllers/controller')
+} = require('../controllers/suborderController')
 
 // GET collections 4 button page
 router.get('/', (req, res) => {
@@ -24,7 +23,6 @@ router.get('/hystricomorpha', getHystricomorpha)
 router.get('/myomorpha', getMyomorpha)
 router.get('/sciuromorpha', getSciuromorpha)
 router.get('/rodents', getRodents)
-// router.get('/:suborder', getRodentsBySuborder)
 
 // DELETE a single rodent
 router.delete('/:id', deleteRodent)

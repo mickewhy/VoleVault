@@ -37,12 +37,6 @@ const getRodents = async (req, res) => {
     res.status(200).json(rodentQuery)
 }
 
-// const getRodentsBySuborder = async (req, res) => {
-//     const { suborder } = req.params
-//     const rodentQuery = await rodents.find({ suborder: suborder }).sort({ family: 1, binomialName: 1 })
-//     res.status(200).json(rodentQuery)
-// }
-
 // Delete a rodent
 const deleteRodent = async (req, res) => {
     const { id } = req.params
@@ -75,7 +69,6 @@ module.exports = {
     getMyomorpha,
     getSciuromorpha,
     getRodents,
-    // getRodentsBySuborder,
     deleteRodent,
     updateRodent
 }
