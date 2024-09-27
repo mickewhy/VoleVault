@@ -33,13 +33,27 @@ userSchema.statics.signup = async function (username, email, password) {
     return user
 }
 
-userSchema.statics.login = async function (email, password) {
-    if (!email || !password)
+userSchema.statics.login = async function (credential, password) {
+    if (!credential || !password)
         throw Error('All fields must be filled')
-
-    const user = await this.findOne({ email })
-    if (!user)
-        throw Error('Incorrect email')
+    
+    let email = null
+    let username = null
+    let user = null
+    if(validator.isEmail(credential)){
+        email = credential
+        user = await this.findOne({ email })
+        if (!user)
+            throw Error('Incorrect email')
+        username = user.username
+    }
+    else{
+        username = credential
+        user = await this.findOne({ username })
+        if (!user)
+            throw Error('Incorrect username')
+        email = user.email
+    }
 
     const match = await bcrypt.compare(password, user.password)
     if (!match)
