@@ -2,35 +2,46 @@ import { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
 
 const Login = () => {
-    const [email, setEmail] = useState('')
+    const [credential, setCredential] = useState('')
     const [password, setPassword] = useState('')
     const { login, error, isLoading } = useLogin()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await login(email, password)
+        await login(credential, password)
     }
 
     return (
-        <form className="login" onSubmit={handleSubmit}>
-            <h3>Log In</h3>
-
-            <label>Email address:</label>
-            <input
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-            />
-            <label>Password:</label>
-            <input
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-            />
-
-            <button disabled={isLoading}>Log in</button>
-            {error && <div className="error">{error}</div>}
-        </form>
+        <div>
+            <form className="login" onSubmit={handleSubmit}>
+                <img src="https://media.discordapp.net/attachments/932866678126161960/1281807802473381929/Untitled646.png?ex=66e4f90a&is=66e3a78a&hm=3c94d00f0f0ea82a31dd5dfde41e92cba73c83a1b3bc5a2831ff034150c35d6f&" alt="logo" />
+                <h1>Welcome Back</h1>
+                <div className="form-input-boxes">
+                    <div className="form-input-box">
+                        <input
+                            type="text"
+                            onChange={(e) => setCredential(e.target.value)}
+                            value={credential}
+                            required
+                        /> <i>Username or Email</i>
+                    </div>
+                    <div className="form-input-box">
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            required
+                        /> <i>Password</i>
+                    </div>
+                </div>
+                <a href="/reset">Forgot password?</a>
+                <button disabled={isLoading}>Log in</button>
+                {error && <div className="error">{console.log(error)}</div>}
+            </form>
+            <div className="redirect-box">
+                <span>Don't have an account? <a href="/signup">Sign up</a></span>
+            </div>
+        </div>
     )
 }
 
