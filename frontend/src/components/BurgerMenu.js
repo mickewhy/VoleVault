@@ -13,9 +13,12 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import PersonIcon from '@mui/icons-material/Person'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 
 const BurgerMenu = () => {
+  const { user } = useAuthContext()
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -37,7 +40,7 @@ const BurgerMenu = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List sx={{ paddingLeft: '16px', paddingRight: '16px' }}>
-        {['Home', 'Collections', 'Submissions', 'Taxa List'].map((text, index) => (
+        {['Home', 'Collections', 'Taxa List', 'Contact'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton sx={{
               color: 'white',
@@ -48,41 +51,46 @@ const BurgerMenu = () => {
             }} onClick={() => navigate(
               index === 0 ? '/' :
                 index === 1 ? '/collections' :
-                  index === 2 ? '/submissions' :
-                    '/taxa'
+                  index === 2 ? '/taxa' :
+                    '/contact'
             )}>
               <ListItemIcon sx={{ color: 'white' }}>
                 {index === 0 ? <HomeIcon /> :
                   index === 1 ? <DashboardIcon /> :
-                    index === 2 ? <PublishIcon /> :
-                      <FormatListBulletedIcon />}
+                    index === 2 ? <FormatListBulletedIcon /> :
+                      <PersonIcon />}
               </ListItemIcon>
               <ListItemText primary={text} sx={{ color: 'white' }} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-      <Divider sx={{ borderColor: '#222', maxWidth: '95%', justifySelf: 'center', margin: 'auto' }} />
-      <List sx={{ paddingLeft: '16px', paddingRight: '16px' }}>
-        {['Contact'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton sx={{
-              color: 'white',
-              // borderRadius: '10px',
-              '&:hover': {
-                backgroundColor: '#333',
-              },
-            }} onClick={() => navigate(
-              index === 0 ? '/contact' : ''
-            )}>
-              <ListItemIcon sx={{ color: 'white' }}>
-                <PersonIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} sx={{ color: 'white' }} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+
+      {user && (
+        <>
+        <Divider sx={{ borderColor: '#222', maxWidth: '95%', justifySelf: 'center', margin: 'auto' }} />
+        <List sx={{ paddingLeft: '16px', paddingRight: '16px' }}>
+          {['Submissions'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton sx={{
+                color: 'white',
+                // borderRadius: '10px',
+                '&:hover': {
+                  backgroundColor: '#333',
+                },
+              }} onClick={() => navigate(
+                index === 0 ? '/submissions' : ''
+              )}>
+                <ListItemIcon sx={{ color: 'white' }}>
+                  <PublishIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} sx={{ color: 'white' }} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </>
+      )}
     </div>
   )
 
