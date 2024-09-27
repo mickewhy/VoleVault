@@ -7,15 +7,16 @@ const rodentSchema = new mongoose.Schema({
     family: { type: String, required: true, unique: false },
     sex: { type: String, enum: ["Male", "Female"], required: false, unique: false },
     age: { type: String, enum: ["Juvenile", "Subadult", "Adult", "Geriatric Adult"], required: false, unique: false },
-    origin: { type: String, required: false, unique: false },
+    origin: { type: Array, required: false, unique: false },
     dateOfAcquisition: { type: Date, required: true, unique: false },
     causeOfDeath: { type: String, required: false, unique: false },
-    dimensions: { type: String, required: true, unique: false },
+    dimensions: { type: Array, required: true, unique: false },
     cleaningMethod: { type: String, required: false, unique: false },
     notes: { type: String, required: false, unique: false },
     links: { type: Array, required: true, unique: false, validate: [arrayLimit, '{PATH} exceeds the limit of 6'] },
     credit: { type: String, required: true, unique: false },
     copyrightInfo: { type: String, required: false, unique: false },
+    isApproved: { type: Boolean, required: true, unique: false },
 }, { timestamps: true })
 
 function arrayLimit(val) {

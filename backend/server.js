@@ -21,9 +21,14 @@ app.get('/', (req, res) => {
 
 // POST a single submission
 app.post('/submissions', async (req, res) => {
-    const { commonName, binomialName, suborder, family, sex, age, origin, dateOfAcquisition, causeOfDeath, dimensions, cleaningMethod, notes, links, summary, credit, creditLink, contactInfo, hostedOnWebsite } = req.body
+    const { commonName, binomialName, suborder, family, sex, age, county, state, country, dateOfAcquisition, causeOfDeath, CBLength, ZBreadth, MLength, FILength, MMRLength, NLength, cleaningMethod, notes, credit, copyrightInfo, isApproved } = req.body
+    const origin = [county, state, country]
+    const requiredDimensions = [CBLength, ZBreadth, MLength]
+    const optionalDimensions = [FILength, MMRLength, NLength]
+    const dimensions = [requiredDimensions, optionalDimensions]
+    const links = []
     try {
-        const rodent = await rodents.create({ commonName, binomialName, suborder, family, sex, age, origin, dateOfAcquisition, causeOfDeath, dimensions, cleaningMethod, notes, links, summary, credit, creditLink, contactInfo, hostedOnWebsite })
+        const rodent = await rodents.create({ commonName, binomialName, suborder, family, sex, age, origin, dateOfAcquisition, causeOfDeath, dimensions, cleaningMethod, notes, links, credit, copyrightInfo, isApproved })
         res.status(200).json(rodent)
     }
     catch (err) {

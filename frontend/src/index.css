@@ -286,7 +286,8 @@ form button {
   transition: transform 0.1s ease-in-out;
 }
 
-form button:hover {
+form.login button:hover,
+form.signup button:hover {
   background-color: #222;
   color: #ddd;
   transform: scale(1.03);
@@ -303,14 +304,27 @@ div.error {
 }
 
 .form-container {
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-bottom: 50px;
+  margin-bottom:100px;
 
   span {
     color: red;
+  }
+
+  button {
+    margin-top: 50px;
+    font-size: 24px;
+  }
+
+  button:hover {
+    background-color: #222;
+    color: #ddd;
+    transform: scale(1.03);
   }
 }
 
@@ -381,6 +395,28 @@ input[type="file"] {
 
 .option-menu input {
   cursor: pointer;
+}
+
+form.rodent {
+  max-width: 80%;
+  margin: 0px auto;
+  margin-bottom: 0px;
+  background: #111;
+  border-radius: 5px;
+}
+
+.form-header {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 10px;
+
+  h1 {
+    margin: 0px;
+  }
+
+  p {
+    margin: 0px;
+  }
 }
 
 
@@ -1083,4 +1119,32 @@ form a:hover {
   a:hover {
     text-decoration: underline;
   }
+}
+
+
+
+/* || Dividers */
+/* Dashed border */
+hr.dashed {
+  border-top: 3px dashed #555;
+  max-width: 90%;
+}
+
+/* Dotted border */
+hr.dotted {
+  border: 3px dotted #555;
+  max-width: 90%;
+}
+
+/* Solid border */
+hr.solid {
+  border: 3px solid #555;
+  max-width: 90%;
+}
+
+/* Rounded border */
+hr.rounded {
+  border: 3px solid #555;
+  border-radius: 5px;
+  max-width: 90%;
 }

@@ -11,6 +11,7 @@ const Submissions = () => {
             const json = await response.json()
             if (response.ok) {
                 setSubmissions(json)
+                console.log(json)
             }
         }
         fetchSubmissions()

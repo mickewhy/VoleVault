@@ -8,10 +8,17 @@ const RodentForm = () => {
     const [family, setFamily] = useState('')
     const [sex, setSex] = useState('')
     const [age, setAge] = useState('')
-    const [origin, setOrigin] = useState('')
+    const [county, setCounty] = useState('')
+    const [state, setState] = useState('')
+    const [country, setCountry] = useState('')
     const [dateOfAcquisition, setDateOfAcquisition] = useState('')
     const [causeOfDeath, setCauseOfDeath] = useState('')
-    const [dimensions, setDimensions] = useState('')
+    const [CBLength, setCBLength] = useState('')
+    const [ZBreadth, setZBreadth] = useState('')
+    const [MLength, setMLength] = useState('')
+    const [FILength, setFILength] = useState('')
+    const [MMRLength, setMMRLength] = useState('')
+    const [NLength, setNLength] = useState('')
     const [cleaningMethod, setCleaningMethod] = useState('')
     const [notes, setNotes] = useState('')
     const [links, setLinks] = useState('')
@@ -22,7 +29,8 @@ const RodentForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const rodent = { commonName, binomialName, suborder, family, sex, age, origin, dateOfAcquisition, causeOfDeath, dimensions, cleaningMethod, notes, links, credit, copyrightInfo }
+        const isApproved = false
+        const rodent = { commonName, binomialName, suborder, family, sex, age, county, state, country, dateOfAcquisition, causeOfDeath, CBLength, ZBreadth, MLength, FILength, MMRLength, NLength, cleaningMethod, notes, credit, copyrightInfo, isApproved }
 
         const response = await fetch('/submissions', {
             method: 'POST',
@@ -44,10 +52,17 @@ const RodentForm = () => {
             setFamily('')
             setSex('')
             setAge('')
-            setOrigin('')
+            setCounty('')
+            setState('')
+            setCountry('')
             setDateOfAcquisition(null)
             setCauseOfDeath('')
-            setDimensions('')
+            setCBLength('')
+            setZBreadth('')
+            setMLength('')
+            setFILength('')
+            setMMRLength('')
+            setNLength('')
             setCleaningMethod('')
             setNotes('')
             setLinks(null)
@@ -68,11 +83,13 @@ const RodentForm = () => {
             creditTextarea.style.backgroundColor = '#111'
             creditTextarea.style.color = '#444'
             creditTextarea.placeholder = '--Private Collection--'
+            setCredit('None')
         }
         else {
             creditTextarea.style.backgroundColor = '#333'
             creditTextarea.style.color = '#fff'
             creditTextarea.placeholder = 'Give yourself submission credit here.\nYou may enter your full or abbreviated legal name, your facility, or an online pseudonym.\nIf you don’t want public credit, select ‘Private Collection’.'
+            setCredit('')
         }
     }
 
@@ -226,7 +243,12 @@ const RodentForm = () => {
     ]
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='rodent' onSubmit={handleSubmit}>
+            <div className='form-header'>
+                <img src="https://media.discordapp.net/attachments/932866678126161960/1281807802473381929/Untitled646.png?ex=66e4f90a&is=66e3a78a&hm=3c94d00f0f0ea82a31dd5dfde41e92cba73c83a1b3bc5a2831ff034150c35d6f&" alt="logo" />
+                <h1>Rodent Form</h1><p>Submit your own rodents!</p>
+            </div>
+            <hr className="rounded" />
             <div className='form-container'>
                 <div className="form-stacked">
                     <div>
@@ -236,6 +258,7 @@ const RodentForm = () => {
                             onChange={(e) => setCommonName(e.target.value)}
                             value={commonName}
                             placeholder='Creeping Vole'
+                            required
                         />
                     </div>
 
@@ -246,6 +269,7 @@ const RodentForm = () => {
                             onChange={(e) => setBinomialName(e.target.value)}
                             value={binomialName}
                             placeholder='Microtus oregoni'
+                            required
                         />
                     </div>
                 </div>
@@ -258,7 +282,7 @@ const RodentForm = () => {
                             onSelect={(option) => { setSuborder(option) }}
                             value={suborder}
                             placeholder='Myomorpha'
-                            onClick={console.log('mik')}
+                            required
                         />
                     </div>
 
@@ -269,6 +293,7 @@ const RodentForm = () => {
                             onChange={(e) => setFamily(e.target.value)}
                             value={family}
                             placeholder='Cricetidae'
+                            required
                         />
                     </div>
                 </div>
@@ -302,8 +327,8 @@ const RodentForm = () => {
                             <p>County</p>
                             <textarea
                                 type='text'
-                                onChange={(e) => setDimensions(e.target.value)}
-                                value={origin}
+                                onChange={(e) => setCounty(e.target.value)}
+                                value={county}
                                 placeholder='If unknown or inapplicable, leave blank'
                             />
                         </div>
@@ -311,8 +336,8 @@ const RodentForm = () => {
                             <p>State / Province</p>
                             <textarea
                                 type='text'
-                                onChange={(e) => setDimensions(e.target.value)}
-                                value={origin}
+                                onChange={(e) => setState(e.target.value)}
+                                value={state}
                                 placeholder='If unknown or inapplicable, leave blank'
                             />
                         </div>
@@ -320,8 +345,8 @@ const RodentForm = () => {
                             <p>Country</p>
                             <textarea
                                 type='text'
-                                onChange={(e) => setDimensions(e.target.value)}
-                                value={origin}
+                                onChange={(e) => setCountry(e.target.value)}
+                                value={country}
                                 placeholder='Required field'
                             />
                         </div>
@@ -334,6 +359,7 @@ const RodentForm = () => {
                         type='date'
                         onChange={(e) => setDateOfAcquisition(e.target.value)}
                         value={dateOfAcquisition}
+                        required
                     />
                 </div>
 
@@ -354,8 +380,8 @@ const RodentForm = () => {
                             <p>Condylobasal Length</p>
                             <textarea
                                 type='text'
-                                onChange={(e) => setDimensions(e.target.value)}
-                                value={dimensions}
+                                onChange={(e) => setCBLength(e.target.value)}
+                                value={CBLength}
                                 placeholder='Greatest length of the skull in mms'
                             />
                         </div>
@@ -363,8 +389,8 @@ const RodentForm = () => {
                             <p>Zygomatic Breadth</p>
                             <textarea
                                 type='text'
-                                onChange={(e) => setDimensions(e.target.value)}
-                                value={dimensions}
+                                onChange={(e) => setZBreadth(e.target.value)}
+                                value={ZBreadth}
                                 placeholder='Greatest length of the mandible in mms, not including the incisors'
                             />
                         </div>
@@ -372,8 +398,8 @@ const RodentForm = () => {
                             <p>Mandible Length</p>
                             <textarea
                                 type='text'
-                                onChange={(e) => setDimensions(e.target.value)}
-                                value={dimensions}
+                                onChange={(e) => setMLength(e.target.value)}
+                                value={MLength}
                                 placeholder='Greatest width of the skull in mms'
                             />
                         </div>
@@ -387,8 +413,8 @@ const RodentForm = () => {
                             <p>Foramen Incisivum Length</p>
                             <textarea
                                 type='text'
-                                onChange={(e) => setDimensions(e.target.value)}
-                                value={dimensions}
+                                onChange={(e) => setFILength(e.target.value)}
+                                value={FILength}
                                 placeholder='Length of the incisive foramina in mms'
                             />
                         </div>
@@ -396,8 +422,8 @@ const RodentForm = () => {
                             <p>Maxillary Molar Row Length</p>
                             <textarea
                                 type='text'
-                                onChange={(e) => setDimensions(e.target.value)}
-                                value={dimensions}
+                                onChange={(e) => setMMRLength(e.target.value)}
+                                value={MMRLength}
                                 placeholder='Length of the upper molar row in mms'
                             />
                         </div>
@@ -405,8 +431,8 @@ const RodentForm = () => {
                             <p>Nasal Length</p>
                             <textarea
                                 type='text'
-                                onChange={(e) => setDimensions(e.target.value)}
-                                value={dimensions}
+                                onChange={(e) => setNLength(e.target.value)}
+                                value={NLength}
                                 placeholder='Length of the nasal bones in mms'
                             />
                         </div>
@@ -442,6 +468,7 @@ const RodentForm = () => {
                         value={links}
                         alt='image'
                         multiple
+                        required
                     />
                 </div>
 
@@ -453,6 +480,7 @@ const RodentForm = () => {
                         onChange={(e) => setCredit(e.target.value)}
                         value={credit}
                         placeholder='Give yourself submission credit here.&#13;&#10;You may enter your full or abbreviated legal name, your facility, or an online pseudonym.&#13;&#10;If you don’t want public credit, select ‘Private Collection’.'
+                        required
                     />
                     <div className='form-checkbox' >
                         <input type="checkbox" id="private-collection" value="Private Collection" onChange={handleCredit} />
@@ -469,7 +497,6 @@ const RodentForm = () => {
                         placeholder='No Copyright (CC0)'
                     />
                 </div>
-                <br></br>
                 <button>Add Rodent</button>
             </div>
 

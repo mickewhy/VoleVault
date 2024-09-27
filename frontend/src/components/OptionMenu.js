@@ -37,7 +37,7 @@ const OptionMenu = ({ options, onSelect, placeholder }) => {
                 placeholder={placeholder || ''}
             />
             {isOpen && (
-                <List sx={{ paddingLeft: 0, paddingRight: 0, backgroundColor: '#111', position: 'absolute', width: inputWidth.current + 'px' }}>
+                <List sx={{ paddingLeft: 0, paddingRight: 0, backgroundColor: '#222', position: 'absolute', width: inputWidth.current + 'px' }}>
                     {options.map((option) => (
                         <ListItem key={option.label} disablePadding>
                             <ListItemButton
