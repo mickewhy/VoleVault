@@ -225,10 +225,6 @@ const RodentForm = () => {
         },
     ]
 
-    const optionMenuClick = () => {
-        document.addEventListener('click', () => { console.log('hi') }, { once:true })
-    }
-
     return (
         <form onSubmit={handleSubmit}>
             <div className='form-container'>
