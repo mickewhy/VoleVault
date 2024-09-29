@@ -474,7 +474,7 @@ form.rodent {
   border: 2px solid #272727
 }
 
-.image-wrapper:hover .image {
+.image-wrapper:hover img {
   transform: scale(1.1);
   filter: blur(2px) brightness(0.8);
 }
