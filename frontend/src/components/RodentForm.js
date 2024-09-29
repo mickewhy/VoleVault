@@ -93,6 +93,49 @@ const RodentForm = () => {
         }
     }
 
+    const handlePopUp = () => {
+        document.getElementById('light').style.display = 'flex'
+        document.getElementById('fade').style.display = 'flex'
+        document.querySelector('.popup-content').addEventListener('click', (event) => {
+            if (event.target.className !== 'popup-image' && event.target.className !== 'popup-image zoom')
+                closePopUp()
+        })
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape')
+                closePopUp()
+        })
+    }
+
+    const closePopUp = () => {
+        document.getElementById('light').style.display = 'none'
+        document.getElementById('fade').style.display = 'none'
+    }
+
+    const handleZoom = () => {
+        const activeImage = document.querySelector('.popup-image')
+        if (activeImage) {
+            activeImage.classList.toggle('zoom')
+
+            if (activeImage.classList.contains('zoom'))
+                activeImage.addEventListener('mousemove', handleMouseMove)
+            else {
+                activeImage.removeEventListener('mousemove', handleMouseMove)
+                activeImage.style.transform = 'none'
+            }
+        }
+    }
+
+    const handleMouseMove = (e) => {
+        const activeImage = e.target
+        const rect = activeImage.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+        const scale = 3
+        const increment = 0.2
+        const transform = `scale(${scale}) translate(${-1 * increment * (x - rect.width / 2)}px, ${-1 * increment * (y - rect.height / 2)}px)`
+        activeImage.style.transform = transform
+    }
+
     const suborderOptions = [
         {
             label: 'Anomaluromorpha',
@@ -243,265 +286,288 @@ const RodentForm = () => {
     ]
 
     return (
-        <form className='rodent' onSubmit={handleSubmit}>
-            <div className='form-header'>
-                <img src="https://media.discordapp.net/attachments/932866678126161960/1281807802473381929/Untitled646.png?ex=66e4f90a&is=66e3a78a&hm=3c94d00f0f0ea82a31dd5dfde41e92cba73c83a1b3bc5a2831ff034150c35d6f&" alt="logo" />
-                <h1>Rodent Form</h1><p>Submit your own rodents!</p>
+        <>
+            <div id="light" className="popup-content">
+                <img
+                    className="popup-image"
+                    src={'https://cdn.discordapp.com/attachments/932866678126161960/1290014321610461194/IMG_5896.png?ex=66faeaf5&is=66f99975&hm=53d984a0b496ca16ce8b635aca29c565a44891fbd5ba39b72c6e739555162989&'}
+                    alt={'Dimensions Info.'}
+                    onClick={handleZoom}
+                />
+                <button title="Close (Esc)" className="popup-close">
+                    <svg fill="white" x="0px" y="0px" width="20" height="20" viewBox="0 0 512 512">
+                        <path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4 L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1 c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1 c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"></path>
+                    </svg>
+                </button>
             </div>
-            <hr className="rounded" />
-            <div className='form-container'>
-                <div className="form-stacked">
-                    <div>
-                        <h3>Common Name<span>*</span></h3>
-                        <input
-                            type='text'
-                            onChange={(e) => setCommonName(e.target.value)}
-                            value={commonName}
-                            placeholder='Creeping Vole'
-                            required
-                        />
-                    </div>
+            <div id="fade" className="popup-overlay"></div>
 
-                    <div>
-                        <h3>Binomial Name<span>*</span></h3>
-                        <input
-                            type='text'
-                            onChange={(e) => setBinomialName(e.target.value)}
-                            value={binomialName}
-                            placeholder='Microtus oregoni'
-                            required
-                        />
-                    </div>
+            <form className='rodent' onSubmit={handleSubmit}>
+                <div className='form-header'>
+                    <img src="https://media.discordapp.net/attachments/932866678126161960/1281807802473381929/Untitled646.png?ex=66e4f90a&is=66e3a78a&hm=3c94d00f0f0ea82a31dd5dfde41e92cba73c83a1b3bc5a2831ff034150c35d6f&" alt="logo" />
+                    <h1>Rodent Form</h1><p>Submit your own rodents!</p>
                 </div>
-
-                <div className="form-stacked">
-                    <div>
-                        <h3>Suborder<span>*</span></h3>
-                        <OptionMenu
-                            options={suborderOptions}
-                            onSelect={(option) => { setSuborder(option) }}
-                            value={suborder}
-                            placeholder='Myomorpha'
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <h3>Family<span>*</span></h3>
-                        <input
-                            type='text'
-                            onChange={(e) => setFamily(e.target.value)}
-                            value={family}
-                            placeholder='Cricetidae'
-                            required
-                        />
-                    </div>
-                </div>
-
-                <div className="form-stacked">
-                    <div>
-                        <h3>Sex</h3>
-                        <OptionMenu
-                            options={sexOptions}
-                            onSelect={(option) => { setSex(option) }}
-                            value={sex}
-                            placeholder='Male, Female, etc.'
-                        />
-                    </div>
-
-                    <div>
-                        <h3>Age Class</h3>
-                        <OptionMenu
-                            options={ageOptions}
-                            onSelect={(option) => { setAge(option) }}
-                            value={age}
-                            placeholder='General age range'
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <h3>Origin</h3>
+                <hr className="rounded" />
+                <div className='form-container'>
                     <div className="form-stacked">
                         <div>
-                            <p>County</p>
-                            <textarea
+                            <h3>Common Name<span>*</span></h3>
+                            <input
                                 type='text'
-                                onChange={(e) => setCounty(e.target.value)}
-                                value={county}
-                                placeholder='If unknown or inapplicable, leave blank'
+                                onChange={(e) => setCommonName(e.target.value)}
+                                value={commonName}
+                                placeholder='Creeping Vole'
+                                required
                             />
                         </div>
+
                         <div>
-                            <p>State / Province</p>
-                            <textarea
+                            <h3>Binomial Name<span>*</span></h3>
+                            <input
                                 type='text'
-                                onChange={(e) => setState(e.target.value)}
-                                value={state}
-                                placeholder='If unknown or inapplicable, leave blank'
-                            />
-                        </div>
-                        <div>
-                            <p>Country</p>
-                            <textarea
-                                type='text'
-                                onChange={(e) => setCountry(e.target.value)}
-                                value={country}
-                                placeholder='Required field'
+                                onChange={(e) => setBinomialName(e.target.value)}
+                                value={binomialName}
+                                placeholder='Microtus oregoni'
+                                required
                             />
                         </div>
                     </div>
-                </div>
 
-                <div>
-                    <h3>Date of Acquisition<span>*</span></h3>
-                    <input
-                        type='date'
-                        onChange={(e) => setDateOfAcquisition(e.target.value)}
-                        value={dateOfAcquisition}
-                        required
-                    />
-                </div>
-
-                <div>
-                    <h3>Cause of Death</h3>
-                    <OptionMenu
-                        options={causeOfDeathOptions}
-                        onSelect={(option) => { setCauseOfDeath(option) }}
-                        value={causeOfDeath}
-                        placeholder='How the rodent died, if known'
-                    />
-                </div>
-
-                <div>
-                    <h3>Required Dimensions<span>*</span></h3>
                     <div className="form-stacked">
                         <div>
-                            <p>Condylobasal Length</p>
-                            <textarea
-                                type='text'
-                                onChange={(e) => setCBLength(e.target.value)}
-                                value={CBLength}
-                                placeholder='Greatest length of the skull in mms'
+                            <h3>Suborder<span>*</span></h3>
+                            <OptionMenu
+                                options={suborderOptions}
+                                onSelect={(option) => { setSuborder(option) }}
+                                value={suborder}
+                                placeholder='Myomorpha'
+                                required
                             />
                         </div>
+
                         <div>
-                            <p>Zygomatic Breadth</p>
-                            <textarea
+                            <h3>Family<span>*</span></h3>
+                            <input
                                 type='text'
-                                onChange={(e) => setZBreadth(e.target.value)}
-                                value={ZBreadth}
-                                placeholder='Greatest length of the mandible in mms, not including the incisors'
-                            />
-                        </div>
-                        <div>
-                            <p>Mandible Length</p>
-                            <textarea
-                                type='text'
-                                onChange={(e) => setMLength(e.target.value)}
-                                value={MLength}
-                                placeholder='Greatest width of the skull in mms'
+                                onChange={(e) => setFamily(e.target.value)}
+                                value={family}
+                                placeholder='Cricetidae'
+                                required
                             />
                         </div>
                     </div>
-                </div>
 
-                <div>
-                    <h3>Optional Dimensions</h3>
                     <div className="form-stacked">
                         <div>
-                            <p>Foramen Incisivum Length</p>
-                            <textarea
-                                type='text'
-                                onChange={(e) => setFILength(e.target.value)}
-                                value={FILength}
-                                placeholder='Length of the incisive foramina in mms'
+                            <h3>Sex</h3>
+                            <OptionMenu
+                                options={sexOptions}
+                                onSelect={(option) => { setSex(option) }}
+                                value={sex}
+                                placeholder='Male, Female, etc.'
                             />
                         </div>
+
                         <div>
-                            <p>Maxillary Molar Row Length</p>
-                            <textarea
-                                type='text'
-                                onChange={(e) => setMMRLength(e.target.value)}
-                                value={MMRLength}
-                                placeholder='Length of the upper molar row in mms'
-                            />
-                        </div>
-                        <div>
-                            <p>Nasal Length</p>
-                            <textarea
-                                type='text'
-                                onChange={(e) => setNLength(e.target.value)}
-                                value={NLength}
-                                placeholder='Length of the nasal bones in mms'
+                            <h3>Age Class</h3>
+                            <OptionMenu
+                                options={ageOptions}
+                                onSelect={(option) => { setAge(option) }}
+                                value={age}
+                                placeholder='General age range'
                             />
                         </div>
                     </div>
-                </div>
 
-                <div>
-                    <h3>Cleaning Method</h3>
-                    <OptionMenu
-                        options={cleaningMethodOptions}
-                        onSelect={(option) => { setCleaningMethod(option) }}
-                        value={cleaningMethod}
-                        placeholder='How the skull was cleaned'
-                    />
-                </div>
-
-                <div>
-                    <h3>Notes</h3>
-                    <textarea
-                        id="paragraph"
-                        type='text'
-                        onChange={(e) => setNotes(e.target.value)}
-                        value={notes}
-                        placeholder='Add other details about the individual rodent / skull here.&#13;&#10;Ex: Is any damage to the skull present? Are there notable pathologies? If predated, what species culled it? What type of habitat was it found in?&#13;&#10;Please keep this section professional and as concise as possible.'
-                    />
-                </div>
-
-                <div>
-                    <h3>Links<span>*</span></h3>
-                    <input
-                        type='file'
-                        onChange={(e) => setLinks(e.target.value)}
-                        value={links}
-                        alt='image'
-                        multiple
-                        required
-                    />
-                </div>
-
-                <div>
-                    <h3>Credit<span>*</span></h3>
-                    <textarea
-                        id="paragraph-credit"
-                        type='text'
-                        onChange={(e) => setCredit(e.target.value)}
-                        value={credit}
-                        placeholder='Give yourself submission credit here.&#13;&#10;You may enter your full or abbreviated legal name, your facility, or an online pseudonym.&#13;&#10;If you don’t want public credit, select ‘Private Collection’.'
-                        required
-                    />
-                    <div className='form-checkbox' >
-                        <input type="checkbox" id="private-collection" value="Private Collection" onChange={handleCredit} />
-                        <label for="private-collection">Private Collection</label><br />
+                    <div>
+                        <h3>Origin</h3>
+                        <div className="form-stacked">
+                            <div>
+                                <p>County</p>
+                                <textarea
+                                    type='text'
+                                    onChange={(e) => setCounty(e.target.value)}
+                                    value={county}
+                                    placeholder='If unknown or inapplicable, leave blank'
+                                />
+                            </div>
+                            <div>
+                                <p>State / Province</p>
+                                <textarea
+                                    type='text'
+                                    onChange={(e) => setState(e.target.value)}
+                                    value={state}
+                                    placeholder='If unknown or inapplicable, leave blank'
+                                />
+                            </div>
+                            <div>
+                                <p>Country</p>
+                                <textarea
+                                    type='text'
+                                    onChange={(e) => setCountry(e.target.value)}
+                                    value={country}
+                                    placeholder='Required field'
+                                />
+                            </div>
+                        </div>
                     </div>
+
+                    <div>
+                        <h3>Date of Acquisition<span>*</span></h3>
+                        <input
+                            type='date'
+                            onChange={(e) => setDateOfAcquisition(e.target.value)}
+                            value={dateOfAcquisition}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <h3>Cause of Death</h3>
+                        <OptionMenu
+                            options={causeOfDeathOptions}
+                            onSelect={(option) => { setCauseOfDeath(option) }}
+                            value={causeOfDeath}
+                            placeholder='How the rodent died, if known'
+                        />
+                    </div>
+
+                    <div>
+                        <div className='form-info-title'>
+                            <div onClick={handlePopUp}><h3 href='./' data-tippy={"More info."} data-tippy-animate="fade" data-tippy-size="large" data-tippy-pos="up">ⓘ</h3></div>
+                            <h3>Required Dimensions<span>*</span></h3>
+                        </div>
+                        <div className="form-stacked">
+                            <div>
+                                <p>Condylobasal Length</p>
+                                <textarea
+                                    type='text'
+                                    onChange={(e) => setCBLength(e.target.value)}
+                                    value={CBLength}
+                                    placeholder='Greatest length of the skull in mms'
+                                />
+                            </div>
+                            <div>
+                                <p>Zygomatic Breadth</p>
+                                <textarea
+                                    type='text'
+                                    onChange={(e) => setZBreadth(e.target.value)}
+                                    value={ZBreadth}
+                                    placeholder='Greatest length of the mandible in mms, not including the incisors'
+                                />
+                            </div>
+                            <div>
+                                <p>Mandible Length</p>
+                                <textarea
+                                    type='text'
+                                    onChange={(e) => setMLength(e.target.value)}
+                                    value={MLength}
+                                    placeholder='Greatest width of the skull in mms'
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className='form-info-title'>
+                            <div onClick={handlePopUp}><h3 href='./' data-tippy={"More info."} data-tippy-animate="fade" data-tippy-size="large" data-tippy-pos="up">ⓘ</h3></div>
+                            <h3>Optional Dimensions</h3>
+                        </div>
+                        <div className="form-stacked">
+                            <div>
+                                <p>Foramen Incisivum Length</p>
+                                <textarea
+                                    type='text'
+                                    onChange={(e) => setFILength(e.target.value)}
+                                    value={FILength}
+                                    placeholder='Length of the incisive foramina in mms'
+                                />
+                            </div>
+                            <div>
+                                <p>Maxillary Molar Row Length</p>
+                                <textarea
+                                    type='text'
+                                    onChange={(e) => setMMRLength(e.target.value)}
+                                    value={MMRLength}
+                                    placeholder='Length of the upper molar row in mms'
+                                />
+                            </div>
+                            <div>
+                                <p>Nasal Length</p>
+                                <textarea
+                                    type='text'
+                                    onChange={(e) => setNLength(e.target.value)}
+                                    value={NLength}
+                                    placeholder='Length of the nasal bones in mms'
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Cleaning Method</h3>
+                        <OptionMenu
+                            options={cleaningMethodOptions}
+                            onSelect={(option) => { setCleaningMethod(option) }}
+                            value={cleaningMethod}
+                            placeholder='How the skull was cleaned'
+                        />
+                    </div>
+
+                    <div>
+                        <h3>Notes</h3>
+                        <textarea
+                            id="paragraph"
+                            type='text'
+                            onChange={(e) => setNotes(e.target.value)}
+                            value={notes}
+                            placeholder='Add other details about the individual rodent / skull here.&#13;&#10;Ex: Is any damage to the skull present? Are there notable pathologies? If predated, what species culled it? What type of habitat was it found in?&#13;&#10;Please keep this section professional and as concise as possible.'
+                        />
+                    </div>
+
+                    <div>
+                        <h3>Links<span>*</span></h3>
+                        <input
+                            type='file'
+                            onChange={(e) => setLinks(e.target.value)}
+                            value={links}
+                            alt='image'
+                            multiple
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <h3>Credit<span>*</span></h3>
+                        <textarea
+                            id="paragraph-credit"
+                            type='text'
+                            onChange={(e) => setCredit(e.target.value)}
+                            value={credit}
+                            placeholder='Give yourself submission credit here.&#13;&#10;You may enter your full or abbreviated legal name, your facility, or an online pseudonym.&#13;&#10;If you don’t want public credit, select ‘Private Collection’.'
+                            required
+                        />
+                        <div className='form-checkbox' >
+                            <input type="checkbox" id="private-collection" value="Private Collection" onChange={handleCredit} />
+                            <label for="private-collection">Private Collection</label><br />
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Copyright Information</h3>
+                        <OptionMenu
+                            options={copyrightOptions}
+                            onSelect={(option) => { setCopyrightInfo(option) }}
+                            value={copyrightInfo}
+                            placeholder='No Copyright (CC0)'
+                        />
+                    </div>
+                    <button>Add Rodent</button>
                 </div>
 
-                <div>
-                    <h3>Copyright Information</h3>
-                    <OptionMenu
-                        options={copyrightOptions}
-                        onSelect={(option) => { setCopyrightInfo(option) }}
-                        value={copyrightInfo}
-                        placeholder='No Copyright (CC0)'
-                    />
-                </div>
-                <button>Add Rodent</button>
-            </div>
-
-            {error && <div className='error'>{error}</div>}
-        </form>
+                {error && <div className='error'>{error}</div>}
+            </form>
+        </>
     )
 }
 

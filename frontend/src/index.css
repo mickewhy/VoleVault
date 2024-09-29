@@ -310,7 +310,7 @@ div.error {
   flex-direction: column;
   gap: 10px;
   padding-bottom: 50px;
-  margin-bottom:100px;
+  margin-bottom: 100px;
 
   span {
     color: red;
@@ -417,6 +417,20 @@ form.rodent {
   p {
     margin: 0px;
   }
+}
+
+.form-info-title {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-info-title div h3 {
+  color: #555;
+  font-size: 18px;
+  position: relative;
+  cursor: pointer;
 }
 
 
@@ -640,7 +654,7 @@ form.rodent {
 .popup-content {
   overflow: hidden;
   display: none;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -669,7 +683,7 @@ form.rodent {
 
 .popup-overlay {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0%;
   left: 0%;
   width: 100%;
