@@ -17,7 +17,7 @@ header {
   left: 0;
   width: 100vw;
   z-index: 10;
-  border-bottom: 1px solid #333
+  border-bottom: 1px solid #111
 }
 
 header .header-container {
@@ -50,7 +50,7 @@ header .header-container {
 }
 
 #style1 {
-  border: 2px solid #333;
+  border: 2px solid #222;
   border-radius: 20px;
   padding-left: 15px;
   padding-right: 15px;
@@ -61,15 +61,18 @@ header .header-container {
 }
 
 #style2 {
-  background-color: #333;
+  background-color: #222;
   color: #fff;
   border-radius: 20px;
   padding-left: 15px;
   padding-right: 15px;
+  border: 2px solid transparent;
 }
 
 #style2:hover {
-  background-color: #222;
+  background-color: #0b0b0b;
+  border: 2px solid #222;
+  border-radius: 20px;
   color: #ddd;
 }
 
@@ -266,7 +269,7 @@ textarea {
   box-sizing: border-box;
   width: 100%;
   padding: 10px;
-  background-color: #333;
+  background-color: #111;
   border: none;
   color: #fff;
   font-size: 18px;
@@ -276,7 +279,7 @@ textarea {
 
 form button {
   border: 0;
-  background-color: #333;
+  background-color: #222;
   color: #fff;
   padding: 10px;
   font-family: "Barlow Semi Condensed";
@@ -288,7 +291,7 @@ form button {
 
 form.login button:hover,
 form.signup button:hover {
-  background-color: #222;
+  background-color: #333;
   color: #ddd;
   transform: scale(1.03);
   font-size: 19px;
@@ -322,7 +325,7 @@ div.error {
   }
 
   button:hover {
-    background-color: #222;
+    background-color: #333;
     color: #ddd;
     transform: scale(1.03);
   }
@@ -401,7 +404,7 @@ form.rodent {
   max-width: 80%;
   margin: 0px auto;
   margin-bottom: 0px;
-  background: #111;
+  background: #0b0b0b;
   border-radius: 5px;
 }
 
@@ -557,6 +560,7 @@ form.rodent {
 
 .no-results img {
   max-width: 300px;
+  gap: 0px;
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%) brightness(50%) blur(0.8px);
 }
@@ -564,11 +568,119 @@ form.rodent {
 
 
 /* || Image Details */
+.slideshow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:auto;
+}
+
 .slideshow-details {
-  margin-top: 30px;
+  padding: 20px;
+  width: 70%;
+  background: #0b0b0b;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.slideshow-information {
+  padding: 20px;
+  width: 70%;
+  margin-bottom: 50px;
+  background: #111;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.slideshow-information hr {
+  width: 30%;
+}
+
+.slideshow-information b {
+  color: #fff;
+  font-weight: normal;
+
+  em {
+    font-style: normal;
+    color: #444;
+  }
+
+  span {
+    color: #6b6b6b;
+  }
+}
+
+.slideshow-information h1 {
+  text-align: center;
+  font-size: 48px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.slideshow-information h2 {
+  text-align: center;
+  margin: 0px;
+  margin-bottom: 30px;
+}
+
+.slideshow-information-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slideshow-taxa {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+
+  span {
+    font-size: 0.8em;
+  }
+}
+
+.slideshow-taxa b:nth-child(2) {
+  padding-left: 1em;
+}
+
+.slideshow-stacked {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+.slideshow-user {
+  display: flex;
+  position: sticky;
+  width: max-content;
+  margin-left: auto;
+  gap: 3px;
+}
+
+.slideshow-copyright {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  b span {
+    color: #6b6b6b;
+    font-weight: bold;
+  }
+
 }
 
 .slideshow-main {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1082,7 +1194,7 @@ form a:hover {
 .form-input-box input {
   position: relative;
   width: 100%;
-  background: #333;
+  background: #0b0b0b;
   border: 2px solid transparent;
   outline: none;
   padding: 25px 10px 7.5px;
@@ -1140,25 +1252,25 @@ form a:hover {
 /* || Dividers */
 /* Dashed border */
 hr.dashed {
-  border-top: 3px dashed #555;
+  border-top: 3px dashed #222;
   max-width: 90%;
 }
 
 /* Dotted border */
 hr.dotted {
-  border: 3px dotted #555;
+  border: 3px dotted #222;
   max-width: 90%;
 }
 
 /* Solid border */
 hr.solid {
-  border: 3px solid #555;
+  border: 3px solid #222;
   max-width: 90%;
 }
 
 /* Rounded border */
 hr.rounded {
-  border: 3px solid #555;
+  border: 3px solid #222;
   border-radius: 5px;
   max-width: 90%;
 }
