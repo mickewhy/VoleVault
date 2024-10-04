@@ -39,7 +39,7 @@ const Home = () => {
                             <div className="image-grid">
                                 <div className="image-wrapper"
                                     onClick={() => {
-                                        navigate(`/collections/castorimorpha/${rodent._id}`, { state: rodent })
+                                        navigate(`/collections/${rodent.suborder.toLowerCase()}/${rodent._id}`, { state: rodent })
                                     }}>{rodent.links &&
                                         <img
                                             src={rodent.links[0]}
