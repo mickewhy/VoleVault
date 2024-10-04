@@ -17,6 +17,7 @@ const rodentSchema = new mongoose.Schema({
     credit: { type: String, required: true, unique: false },
     copyrightInfo: { type: String, required: false, unique: false },
     isApproved: { type: Boolean, required: true, unique: false },
+    user: { type: String, required: true, unique: false },
 }, { timestamps: true })
 
 function arrayLimit(val) {
