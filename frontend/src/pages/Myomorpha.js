@@ -80,7 +80,7 @@ const Myomorpha = () => {
     return (
         <div>
             <div className="page-title">
-                <img src="https://cdn.discordapp.com/attachments/932866678126161960/1244917657212555335/Myomorpha.png?ex=66dc02ea&is=66dab16a&hm=c9105221aac770488e054a4ef8a17c7718113a6f51e5bfe5aab7778eef1ea723&" alt="Myomorpha" />
+                <img src="/Myomorpha.png" alt="Myomorpha" />
                 <h1>Myomorpha</h1>
                 <form>
                     <div className="search-bar">
@@ -99,7 +99,7 @@ const Myomorpha = () => {
                         filteredMyomorpha.length > 0 ?
                             (groupByFamily(filteredMyomorpha)) : (
                                 <div className="no-results">
-                                    <img src="https://cdn.discordapp.com/attachments/932866678126161960/1244917657212555335/Myomorpha.png?ex=66dc02ea&is=66dab16a&hm=c9105221aac770488e054a4ef8a17c7718113a6f51e5bfe5aab7778eef1ea723&" alt="Myomorpha" />
+                                    <img src="/Myomorpha.png" alt="Myomorpha" />
                                     <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
                                 </div>
                             )

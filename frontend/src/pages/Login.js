@@ -14,7 +14,7 @@ const Login = () => {
     return (
         <div>
             <form className="login" onSubmit={handleSubmit}>
-                <img src="https://media.discordapp.net/attachments/932866678126161960/1281807802473381929/Untitled646.png?ex=66e4f90a&is=66e3a78a&hm=3c94d00f0f0ea82a31dd5dfde41e92cba73c83a1b3bc5a2831ff034150c35d6f&" alt="logo" />
+                <img src="/Logo.png" alt="logo" />
                 <h1>Welcome Back</h1>
                 <div className="form-input-boxes">
                     <div className="form-input-box">

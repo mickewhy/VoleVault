@@ -88,7 +88,7 @@ const Hystricomorpha = () => {
     return (
         <div>
             <div className="page-title">
-                <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279422602776596/Hystricomorpha.png?ex=66dc0d2b&is=66dabbab&hm=fda1137df82174d74eed32ed12aa4a2195723a08ce514e5504616d5531de4e57&" alt="Hystricomorpha" />
+                <img src="/Hystricomorpha.png" alt="Hystricomorpha" />
                 <h1>Hystricomorpha</h1>
                 <form>
                     <div className="search-bar">
@@ -107,7 +107,7 @@ const Hystricomorpha = () => {
                         filteredHystricomorpha.length > 0 ?
                             (groupByFamily(filteredHystricomorpha)) : (
                                 <div className="no-results">
-                                    <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279422602776596/Hystricomorpha.png?ex=66dc0d2b&is=66dabbab&hm=fda1137df82174d74eed32ed12aa4a2195723a08ce514e5504616d5531de4e57&" alt="Hystricomorpha" />
+                                    <img src="/Hystricomorpha.png" alt="Hystricomorpha" />
                                     <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
                                 </div>
                             )

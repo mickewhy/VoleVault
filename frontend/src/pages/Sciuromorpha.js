@@ -74,7 +74,7 @@ const Sciuromorpha = () => {
     return (
         <div>
             <div className="page-title">
-                <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279357557637120/Sciuromorpha.png?ex=66dc0d1b&is=66dabb9b&hm=4951d9104607e10d2ce8ab966429ef7d5e3ca65343fbe35cd4e850a5380979c6&" alt="Sciuromorpha" />
+                <img src="/Sciuromorpha.png" alt="Sciuromorpha" />
                 <h1>Sciuromorpha</h1>
                 <form>
                     <div className="search-bar">
@@ -93,7 +93,7 @@ const Sciuromorpha = () => {
                         filteredSciuromorpha.length > 0 ?
                             (groupByFamily(filteredSciuromorpha)) : (
                                 <div className="no-results">
-                                    <img src="https://cdn.discordapp.com/attachments/1222273673604628641/1222279357557637120/Sciuromorpha.png?ex=66dc0d1b&is=66dabb9b&hm=4951d9104607e10d2ce8ab966429ef7d5e3ca65343fbe35cd4e850a5380979c6&" alt="Sciuromorpha" />
+                                    <img src="/Sciuromorpha.png" alt="Sciuromorpha" />
                                     <p>This rodent hasn't been submitted yet! <a href="../submissions">Submit rodents</a></p>
                                 </div>
                             )

@@ -50,7 +50,7 @@ const OptionMenu = ({ options, onSelect, placeholder }) => {
                                 }}
                             >
                                 <ListItemIcon sx={{ color: 'white', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                                    {option.image ? <img style={{ maxWidth: '100px', height: 'auto' }} src={option.image} alt={option.label} /> : ''}
+                                    {option.image && <img style={{ maxWidth: '100px', height: 'auto' }} src={option.image} alt={option.label} />}
                                     <ListItemText disableTypography primary={option.label} sx={{ color: 'white', fontFamily: "Barlow Semi Condensed" }} />
                                 </ListItemIcon>
                             </ListItemButton>
