@@ -12,6 +12,7 @@ import Sciuromorpha from './pages/Sciuromorpha'
 import ImageDetails from './pages/ImageDetails'
 import Submissions from './pages/Submissions'
 import Taxa from './pages/Taxa'
+import Contact from './pages/Contact'
 import NoPage from './pages/NoPage'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path='/collections/sciuromorpha/:rodentId' element={<ImageDetails />} />
           <Route path='/submissions' element={<Submissions />} />
           <Route path='/taxa' element={<Taxa />} />
+          <Route path='/contact' element={<Contact />} />
           <Route path='*' element={<NoPage />} />
         </Routes>
       </div>
