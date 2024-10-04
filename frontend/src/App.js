@@ -16,32 +16,30 @@ import NoPage from './pages/NoPage'
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Navbar />
-        <div className='pages'>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/collections' element={<Collections />} />
-            <Route path='/collections/anomaluromorpha' element={<Anomaluromorpha />} />
-            <Route path='/collections/castorimorpha' element={<Castorimorpha />} />
-            <Route path='/collections/hystricomorpha' element={<Hystricomorpha />} />
-            <Route path='/collections/myomorpha' element={<Myomorpha />} />
-            <Route path='/collections/sciuromorpha' element={<Sciuromorpha />} />
-            <Route path='/collections/anomaluromorpha/:rodentId' element={<ImageDetails />} />
-            <Route path='/collections/castorimorpha/:rodentId' element={<ImageDetails />} />
-            <Route path='/collections/hystricomorpha/:rodentId' element={<ImageDetails />} />
-            <Route path='/collections/myomorpha/:rodentId' element={<ImageDetails />} />
-            <Route path='/collections/sciuromorpha/:rodentId' element={<ImageDetails />} />
-            <Route path='/submissions' element={<Submissions />} />
-            <Route path='/taxa' element={<Taxa />} />
-            <Route path='*' element={<NoPage />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <div className='pages'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/collections' element={<Collections />} />
+          <Route path='/collections/anomaluromorpha' element={<Anomaluromorpha />} />
+          <Route path='/collections/castorimorpha' element={<Castorimorpha />} />
+          <Route path='/collections/hystricomorpha' element={<Hystricomorpha />} />
+          <Route path='/collections/myomorpha' element={<Myomorpha />} />
+          <Route path='/collections/sciuromorpha' element={<Sciuromorpha />} />
+          <Route path='/collections/anomaluromorpha/:rodentId' element={<ImageDetails />} />
+          <Route path='/collections/castorimorpha/:rodentId' element={<ImageDetails />} />
+          <Route path='/collections/hystricomorpha/:rodentId' element={<ImageDetails />} />
+          <Route path='/collections/myomorpha/:rodentId' element={<ImageDetails />} />
+          <Route path='/collections/sciuromorpha/:rodentId' element={<ImageDetails />} />
+          <Route path='/submissions' element={<Submissions />} />
+          <Route path='/taxa' element={<Taxa />} />
+          <Route path='*' element={<NoPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 

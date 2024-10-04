@@ -8,6 +8,7 @@ body {
   color: #fff;
   background: #000;
   font-family: "Barlow Semi Condensed";
+  margin: 0px;
 }
 
 header {
@@ -50,6 +51,7 @@ header .header-container {
 }
 
 #style1 {
+  cursor: pointer;
   border: 2px solid #222;
   border-radius: 20px;
   padding-left: 15px;
@@ -61,6 +63,7 @@ header .header-container {
 }
 
 #style2 {
+  cursor: pointer;
   background-color: #222;
   color: #fff;
   border-radius: 20px;
@@ -96,7 +99,6 @@ header button {
   color: #fff;
   background-color: #000;
   padding: 5px;
-  font-family: "Barlow Semi Condensed";
   border-radius: 4px;
   cursor: pointer;
   max-height: 40px;
@@ -114,13 +116,19 @@ header button:hover {
   align-items: center;
 }
 
-.pages {
-  max-width: 1400px;
+.pages:not(.home) {
   margin: 0 auto;
   padding-top: 90px;
   /* padding-bottom: 90px;*/
   padding-left: 40px;
   padding-right: 40px;
+}
+
+.pages:has(.home) {
+  margin: 0 auto;
+  padding-top: 90px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .no-page {
@@ -169,28 +177,128 @@ header button:hover {
 }
 
 ::-webkit-scrollbar-track {
-  background: #777;
+  background: #000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #555;
+  background: #0b0b0b;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #333;
+  background: #222;
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: #222;
+  background: #111;
+}
+
+button {
+  font-family: "Barlow Semi Condensed";
 }
 
 
 
 /* || Home */
 .home {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../public/Background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.home h1 {
+  color: #fff;
+  font-size: 5rem;
+  font-weight: normal;
+  position: relative;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.home h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: normal;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.home>* {
+  margin-top: 30px;
+  background-color: #000;
+  border: 2px solid #0b0b0b;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.home>* button {
+  font-size: 18px;
+}
+
+.home-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.home-header-partial {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-header img {
+  max-width: 300px;
+  transform: translateX(-400px);
+}
+
+.home-header ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0px;
+}
+
+.home-recents-count {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  button {
+    align-self: center;
+  }
+}
+
+.home-recents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-count {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  b {
+    font-size: 2em;
+  }
+}
+
+.home-recents-images {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 
@@ -282,7 +390,6 @@ form button {
   background-color: #222;
   color: #fff;
   padding: 10px;
-  font-family: "Barlow Semi Condensed";
   border-radius: 4px;
   cursor: pointer;
   font-size: 18px;
@@ -299,9 +406,9 @@ form.signup button:hover {
 
 div.error {
   padding: 10px;
-  background: #ffefef;
-  border: 1px solid #e7195a;
-  color: #e7195a;
+  background: white;
+  border: 1px solid red;
+  color: red;
   border-radius: 4px;
   margin: 20px 0;
 }
@@ -439,7 +546,7 @@ form.rodent {
 
 
 /* || Contact */
-/* TODO */
+/* TODO contact*/
 
 
 
@@ -470,7 +577,6 @@ form.rodent {
   display: grid;
   grid-template-columns: repeat(auto-fill, 200px);
   grid-gap: 10px;
-  margin: 2%;
   justify-content: start;
 }
 
@@ -572,7 +678,7 @@ form.rodent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:auto;
+  height: auto;
 }
 
 .slideshow-details {
