@@ -1,5 +1,156 @@
 import { useState } from 'react'
 import OptionMenu from './OptionMenu'
+import { handleZoom, handlePopUp } from '../pages/ImageDetails'
+import { useAuthContext } from '../hooks/useAuthContext'
+
+export const copyrightOptions = [
+    {
+        label: 'No Copyright',
+        image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png',
+        displayText: 'CC0',
+    },
+    {
+        label: 'Attribution',
+        image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png',
+        displayText: 'CC-BY',
+    },
+    {
+        label: 'Attribution-NonCommercial',
+        image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc.png',
+        displayText: 'CC-BY-NC',
+    },
+    {
+        label: 'Attribution-NonCommercial-ShareAlike',
+        image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png',
+        displayText: 'CC-BY-NC-SA',
+    },
+    {
+        label: 'Attribution-NonCommercial-NoDerivs',
+        image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-nd.png',
+        displayText: 'CC-BY-NC-ND',
+    },
+    {
+        label: 'Attribution-NoDerivs',
+        image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nd.png',
+        displayText: 'CC-BY-ND',
+    },
+    {
+        label: 'Attribution-ShareAlike',
+        image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png',
+        displayText: 'CC-BY-SA',
+    },
+]
+
+const suborderOptions = [
+    {
+        label: 'Anomaluromorpha',
+    },
+    {
+        label: 'Castorimorpha',
+    },
+    {
+        label: 'Hystricomorpha',
+    },
+    {
+        label: 'Myomorpha',
+    },
+    {
+        label: 'Sciuromorpha',
+    },
+]
+
+const sexOptions = [
+    {
+        label: 'Male',
+    },
+    {
+        label: 'Female',
+    },
+    {
+        label: 'Unspecified',
+    },
+]
+
+const ageOptions = [
+    {
+        label: 'Juvenile',
+    },
+    {
+        label: 'Subadult',
+    },
+    {
+        label: 'Adult',
+    },
+    {
+        label: 'Geriatric Adult',
+    },
+    {
+        label: 'Unspecified',
+    },
+]
+
+const causeOfDeathOptions = [
+    {
+        label: 'Vehicular Collision',
+    },
+    {
+        label: 'Trapped',
+    },
+    {
+        label: 'Hunted',
+    },
+    {
+        label: 'Non-Human Predation',
+    },
+    {
+        label: 'Poisoned',
+    },
+    {
+        label: 'Infection',
+    },
+    {
+        label: 'Starvation',
+    },
+    {
+        label: 'Drowning',
+    },
+    {
+        label: 'Unknown',
+    },
+    {
+        label: 'Other',
+    },
+]
+
+const cleaningMethodOptions = [
+    {
+        label: 'Maceration',
+    },
+    {
+        label: 'Beetle-Cleaned',
+    },
+    {
+        label: 'Maggot-Cleaned',
+    },
+    {
+        label: 'Nature-Cleaned',
+    },
+    {
+        label: 'Oxidation',
+    },
+    {
+        label: 'Burial',
+    },
+    {
+        label: 'Simmered / Boiled',
+    },
+    {
+        label: 'Unknown',
+    },
+    {
+        label: 'Other',
+    },
+]
 
 const RodentForm = () => {
     const [commonName, setCommonName] = useState('')
@@ -25,6 +176,7 @@ const RodentForm = () => {
     const [credit, setCredit] = useState('')
     const [copyrightInfo, setCopyrightInfo] = useState('')
     const [error, setError] = useState(null)
+    const { user } = useAuthContext()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -93,204 +245,12 @@ const RodentForm = () => {
         }
     }
 
-    const handlePopUp = () => {
-        document.getElementById('light').style.display = 'flex'
-        document.getElementById('fade').style.display = 'flex'
-        document.querySelector('.popup-content').addEventListener('click', (event) => {
-            if (event.target.className !== 'popup-image' && event.target.className !== 'popup-image zoom')
-                closePopUp()
-        })
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape')
-                closePopUp()
-        })
-    }
-
-    const closePopUp = () => {
-        document.getElementById('light').style.display = 'none'
-        document.getElementById('fade').style.display = 'none'
-    }
-
-    const handleZoom = () => {
-        const activeImage = document.querySelector('.popup-image')
-        if (activeImage) {
-            activeImage.classList.toggle('zoom')
-
-            if (activeImage.classList.contains('zoom'))
-                activeImage.addEventListener('mousemove', handleMouseMove)
-            else {
-                activeImage.removeEventListener('mousemove', handleMouseMove)
-                activeImage.style.transform = 'none'
-            }
-        }
-    }
-
-    const handleMouseMove = (e) => {
-        const activeImage = e.target
-        const rect = activeImage.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        const scale = 3
-        const increment = 0.2
-        const transform = `scale(${scale}) translate(${-1 * increment * (x - rect.width / 2)}px, ${-1 * increment * (y - rect.height / 2)}px)`
-        activeImage.style.transform = transform
-    }
-
-    const suborderOptions = [
-        {
-            label: 'Anomaluromorpha',
-        },
-        {
-            label: 'Castorimorpha',
-        },
-        {
-            label: 'Hystricomorpha',
-        },
-        {
-            label: 'Myomorpha',
-        },
-        {
-            label: 'Sciuromorpha',
-        },
-    ]
-
-    const sexOptions = [
-        {
-            label: 'Male',
-        },
-        {
-            label: 'Female',
-        },
-        {
-            label: 'Unspecified',
-        },
-    ]
-
-    const ageOptions = [
-        {
-            label: 'Juvenile',
-        },
-        {
-            label: 'Subadult',
-        },
-        {
-            label: 'Adult',
-        },
-        {
-            label: 'Geriatric Adult',
-        },
-        {
-            label: 'Unspecified',
-        },
-    ]
-
-    const causeOfDeathOptions = [
-        {
-            label: 'Vehicular Collision',
-        },
-        {
-            label: 'Trapped',
-        },
-        {
-            label: 'Hunted',
-        },
-        {
-            label: 'Non-Human Predation',
-        },
-        {
-            label: 'Poisoned',
-        },
-        {
-            label: 'Infection',
-        },
-        {
-            label: 'Starvation',
-        },
-        {
-            label: 'Drowning',
-        },
-        {
-            label: 'Unknown',
-        },
-        {
-            label: 'Other',
-        },
-    ]
-
-    const cleaningMethodOptions = [
-        {
-            label: 'Maceration',
-        },
-        {
-            label: 'Beetle-Cleaned',
-        },
-        {
-            label: 'Maggot-Cleaned',
-        },
-        {
-            label: 'Nature-Cleaned',
-        },
-        {
-            label: 'Oxidation',
-        },
-        {
-            label: 'Burial',
-        },
-        {
-            label: 'Simmered / Boiled',
-        },
-        {
-            label: 'Unknown',
-        },
-        {
-            label: 'Other',
-        },
-    ]
-
-    const copyrightOptions = [
-        {
-            label: 'No Copyright',
-            image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png',
-            displayText: 'CC0',
-        },
-        {
-            label: 'Attribution',
-            image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png',
-            displayText: 'BY',
-        },
-        {
-            label: 'Attribution-NonCommercial',
-            image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc.png',
-            displayText: 'BY-NC',
-        },
-        {
-            label: 'Attribution-NonCommercial-ShareAlike',
-            image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png',
-            displayText: 'BY-NC-SA',
-        },
-        {
-            label: 'Attribution-NonCommercial-NoDerivs',
-            image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-nd.png',
-            displayText: 'BY-NC-ND',
-        },
-        {
-            label: 'Attribution-NoDerivs',
-            image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nd.png',
-            displayText: 'BY-ND',
-        },
-        {
-            label: 'Attribution-ShareAlike',
-            image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png',
-            displayText: 'BY-SA',
-        },
-    ]
-
     return (
         <>
             <div id="light" className="popup-content">
                 <img
                     className="popup-image"
-                    src={'https://cdn.discordapp.com/attachments/932866678126161960/1290014321610461194/IMG_5896.png?ex=66faeaf5&is=66f99975&hm=53d984a0b496ca16ce8b635aca29c565a44891fbd5ba39b72c6e739555162989&'}
+                    src={'/Measurements.png'}
                     alt={'Dimensions Info.'}
                     onClick={handleZoom}
                 />
@@ -304,7 +264,7 @@ const RodentForm = () => {
 
             <form className='rodent' onSubmit={handleSubmit}>
                 <div className='form-header'>
-                    <img src="https://media.discordapp.net/attachments/932866678126161960/1281807802473381929/Untitled646.png?ex=66e4f90a&is=66e3a78a&hm=3c94d00f0f0ea82a31dd5dfde41e92cba73c83a1b3bc5a2831ff034150c35d6f&" alt="logo" />
+                    <img src="/Logo.png" alt="logo" />
                     <h1>Rodent Form</h1><p>Submit your own rodents!</p>
                 </div>
                 <hr className="rounded" />
