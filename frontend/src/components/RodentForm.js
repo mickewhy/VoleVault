@@ -180,9 +180,10 @@ const RodentForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const username = user.username
 
         const isApproved = false
-        const rodent = { commonName, binomialName, suborder, family, sex, age, county, state, country, dateOfAcquisition, causeOfDeath, CBLength, ZBreadth, MLength, FILength, MMRLength, NLength, cleaningMethod, notes, credit, copyrightInfo, isApproved, user }
+        const rodent = { commonName, binomialName, suborder, family, sex, age, county, state, country, dateOfAcquisition, causeOfDeath, CBLength, ZBreadth, MLength, FILength, MMRLength, NLength, cleaningMethod, notes, credit, copyrightInfo, isApproved, username }
 
         const response = await fetch('/submissions', {
             method: 'POST',

@@ -119,7 +119,7 @@ const ImageDetails = () => {
         </div>
       </div>
       <div className="slideshow-information">
-        <b className="slideshow-user">Submitted by: <span>{rodent.user}</span></b>
+        <b className="slideshow-user">Submitted by: <span>{rodent.username}</span></b>
         <div className="slideshow-taxa">
           <b><em>↳</em> Suborder {rodent.suborder} <span>({suborderCommonNames[rodent.suborder]})</span></b>
           <b><em>↳</em> Family {rodent.family} <span>({familyCommonNames[rodent.family]})</span></b>
