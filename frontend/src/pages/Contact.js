@@ -11,7 +11,7 @@ const Contact = () => {
                     <a href="mailto:contact@volevault.com">contact@volevault.com</a>
                 </div>
             </div>
-            <img src='/TwoSkulls.png' alt='TwoSkulls' />
+            <img src='/ThreeSkulls.png' alt='ThreeSkulls' />
         </div>
     )
 }
