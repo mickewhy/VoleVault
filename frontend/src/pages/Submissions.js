@@ -1,33 +1,14 @@
-import { useEffect, useState } from "react"
+
 import RodentForm from "../components/RodentForm"
 import { useAuthContext } from '../hooks/useAuthContext'
 
 const Submissions = () => {
     const { user } = useAuthContext()
-    const [submissions, setSubmissions] = useState(null)
-    useEffect(() => {
-        const fetchSubmissions = async () => {
-            const response = await fetch('/submissions')
-            const json = await response.json()
-            if (response.ok) {
-                setSubmissions(json)
-                console.log(json)
-            }
-        }
-        fetchSubmissions()
-    }, [])
 
     return (
         <div>
             {user && (
                 <>
-                    <div>
-                        {submissions && submissions.map((castorimorph) => (
-                            // <RodentDetails key={castorimorph._id} rodent={castorimorph}
-                            // />
-                            <div></div>
-                        ))}
-                    </div>
                     <RodentForm />
                 </>
             )}
