@@ -55,17 +55,17 @@ const ImageDetails = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const handleNextImage = () => {
-    if (currentImageIndex === rodent.links.length - 1)
+    if (currentImageIndex === rodent.imageLinks.length - 1)
       setCurrentImageIndex(0)
     else
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % rodent.links.length)
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % rodent.imageLinks.length)
   }
 
   const handlePrevImage = () => {
     if (currentImageIndex === 0)
-      setCurrentImageIndex(rodent.links.length - 1)
+      setCurrentImageIndex(rodent.imageLinks.length - 1)
     else
-      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + rodent.links.length) % rodent.links.length)
+      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + rodent.imageLinks.length) % rodent.imageLinks.length)
   }
 
   return (
@@ -75,7 +75,7 @@ const ImageDetails = () => {
           <div id="light" className="popup-content">
             <img
               className="popup-image"
-              src={rodent.links[currentImageIndex]}
+              src={rodent.imageLinks[currentImageIndex]}
               alt={`${currentImageIndex + 1}`}
               onClick={handleZoom}
             />
@@ -95,7 +95,7 @@ const ImageDetails = () => {
           <div className="slideshow-container">
             <img
               className="slideshow-image"
-              src={rodent.links[currentImageIndex]}
+              src={rodent.imageLinks[currentImageIndex]}
               alt={`${currentImageIndex + 1}`}
               onClick={handlePopUp}
             />
@@ -111,9 +111,9 @@ const ImageDetails = () => {
           </button>
         </div>
         <div className="slideshow-thumbnails">
-          {rodent.links.map((link, index) => (
+          {rodent.imageLinks.map((link, index) => (
             <div className="slideshow-thumbnail-wrapper" onClick={() => setCurrentImageIndex(index)}>
-              <img className={index === currentImageIndex ? "active" : "inactive"} src={rodent.links[index]} alt={index} />
+              <img className={index === currentImageIndex ? "active" : "inactive"} src={rodent.imageLinks[index]} alt={index} />
             </div>
           ))}
         </div>
@@ -135,19 +135,23 @@ const ImageDetails = () => {
             <b><span>Acquired:</span><br></br>{new Date(rodent.dateOfAcquisition).toLocaleString('default', { month: 'short' }) + ' ' + new Date(rodent.dateOfAcquisition).getDate() + ', ' + new Date(rodent.dateOfAcquisition).getFullYear()}</b></>
         </div>
         <div className="slideshow-information-section">
-          <b><span>Sex:</span> {rodent.sex}</b>
-          <b><span>Age:</span> {rodent.age}</b>
-          <b><span>Origin:</span> {rodent.origin[0]} {rodent.origin[1]} {rodent.origin[2]}</b>
-          <b><span>Cause of Death:</span> {rodent.causeOfDeath}</b>
+          <b><span>Sex:</span> {rodent.sex ? rodent.sex : 'Unknown'}</b>
+          <b><span>Age:</span> {rodent.age ? rodent.age : 'Unknown'}</b>
+          <b><span>Origin:</span> {rodent.origin[0] || rodent.origin[1] || rodent.origin[2] ? (rodent.origin[0] ? rodent.origin[0] + ' ' : '') + (rodent.origin[1] ? rodent.origin[1] + ' ' : '') + (rodent.origin[2] ? rodent.origin[2] : '') : 'Unknown'}</b>
+          <b><span>Cause of Death:</span> {rodent.causeOfDeath ? rodent.causeOfDeath : 'Unknown'}</b>
           <b><span>Required Dimensions:</span> {rodent.dimensions[0][0] + 'mm'} {rodent.dimensions[0][1] + 'mm'} {rodent.dimensions[0][2] + 'mm'}</b>
           <b><span>Optional Dimensions:</span> {rodent.dimensions[1][0] + 'mm'} {rodent.dimensions[1][1] + 'mm'} {rodent.dimensions[1][2] + 'mm'}</b>
-          <b><span>Cleaning Method:</span> {rodent.cleaningMethod}</b>
-          <b><span>Notes:</span> {rodent.notes}</b>
+          <b><span>Cleaning Method:</span> {rodent.cleaningMethod ? rodent.cleaningMethod : 'Unknown'}</b>
+          <b><span>Notes:</span> {rodent.notes ? rodent.notes : 'N/A'}</b>
           <b><span>Credit:</span> {rodent.credit}</b>
         </div>
         <div className="slideshow-copyright">
-          {rodentCopyrightData.image && <img style={{ maxWidth: '90px', height: 'auto' }} src={rodentCopyrightData.image} alt={rodentCopyrightData.label} />}
-          <b>{"© " + rodent.user + ', ' + rodent.copyrightInfo}<span>{' (' + rodentCopyrightData.displayText + ')'}</span></b>
+          {rodent.copyrightInfo && (
+            <>
+              <img style={{ maxWidth: '90px', height: 'auto' }} src={rodentCopyrightData.image} alt={rodentCopyrightData.label} />
+              <b>{"© " + rodent.user + ', ' + rodent.copyrightInfo}<span>{' (' + rodentCopyrightData.displayText + ')'}</span></b>
+            </>
+          )}
         </div>
       </div>
     </div>
