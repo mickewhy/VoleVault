@@ -1,7 +1,6 @@
 require('dotenv').config()
 const multer = require('multer')
-const { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } = require('@aws-sdk/client-s3')
-const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
+const { S3Client, PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3')
 const crypto = require('crypto')
 const express = require('express')
 const mongoose = require('mongoose')
@@ -12,9 +11,6 @@ const rodents = require('./models/rodentModel')
 
 //Middleware
 app.use(express.json())
-
-app.use((req, res, next) => { next() })
-
 app.use('/collections', collectionRoutes)
 app.use('/user', userRoutes)
 
