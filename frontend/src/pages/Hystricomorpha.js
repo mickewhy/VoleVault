@@ -46,17 +46,17 @@ const Hystricomorpha = () => {
                 groupedImages[family].push(hystricomorph)
                 return groupedImages
             }, {})
-        ).map(([family, links]) => (
+        ).map(([family, imageLinks]) => (
             <div key={family} className="rodent-container">
                 <h3>{family}<span>({commonNames[family]})</span></h3>
                 <div className="image-grid">
-                    {links.map(rodent => (
+                    {imageLinks.map(rodent => (
                         <div key={rodent._id} className="image-wrapper"
                             onClick={() => {
                                 navigate(`/collections/hystricomorpha/${rodent._id}`, { state: rodent })
                             }}>
                             <img
-                                src={rodent.links[0]}
+                                src={rodent.imageLinks[0]}
                                 alt={rodent.family}
                             />
                             <p className="image-overlay"><i>{rodent.binomialName}</i> <span>({rodent.commonName})</span></p>

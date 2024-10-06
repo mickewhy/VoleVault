@@ -40,9 +40,9 @@ const Home = () => {
                                 <div className="image-wrapper"
                                     onClick={() => {
                                         navigate(`/collections/${rodent.suborder.toLowerCase()}/${rodent._id}`, { state: rodent })
-                                    }}>{rodent.links &&
+                                    }}>{rodent.imageLinks &&
                                         <img
-                                            src={rodent.links[0]}
+                                            src={rodent.imageLinks[0]}
                                             alt={rodent.family}
                                         />}
                                     <p className="image-overlay"><i>{rodent.binomialName}</i> <span>({rodent.commonName})</span></p>
