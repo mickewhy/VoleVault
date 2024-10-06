@@ -172,25 +172,28 @@ const RodentForm = () => {
     const [NLength, setNLength] = useState('')
     const [cleaningMethod, setCleaningMethod] = useState('')
     const [notes, setNotes] = useState('')
-    const [links, setLinks] = useState('')
+    const [images, setImages] = useState([])
     const [credit, setCredit] = useState('')
     const [copyrightInfo, setCopyrightInfo] = useState('')
-    const [error, setError] = useState(null)
+    const [error, setError] = useState('')
     const { user } = useAuthContext()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const username = user.username
-
         const isApproved = false
+
+        console.log('images', images)
         const rodent = { commonName, binomialName, suborder, family, sex, age, county, state, country, dateOfAcquisition, causeOfDeath, CBLength, ZBreadth, MLength, FILength, MMRLength, NLength, cleaningMethod, notes, credit, copyrightInfo, isApproved, username }
 
+        const formData = new FormData()
+        formData.append("rodent", rodent)
+        for (let i = 0; i < images.length; i++) {
+            formData.append('images', images[i]);
+        }
         const response = await fetch('/submissions', {
             method: 'POST',
-            body: JSON.stringify(rodent),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            body: formData,
         })
         const json = await response.json()
 
@@ -198,31 +201,29 @@ const RodentForm = () => {
             setError(json.error)
         }
         if (response.ok) {
-            setError(null)
-            setCommonName('')
-            setBinomialName('')
-            setSuborder('')
-            setFamily('')
-            setSex('')
-            setAge('')
-            setCounty('')
-            setState('')
-            setCountry('')
-            setDateOfAcquisition(null)
-            setCauseOfDeath('')
-            setCBLength('')
-            setZBreadth('')
-            setMLength('')
-            setFILength('')
-            setMMRLength('')
-            setNLength('')
-            setCleaningMethod('')
-            setNotes('')
-            setLinks(null)
-            setCredit('')
-            setCopyrightInfo('')
-
-            console.log('Rodent added:', json)
+            // setError('')
+            // setCommonName('')
+            // setBinomialName('')
+            // setSuborder('')
+            // setFamily('')
+            // setSex('')
+            // setAge('')
+            // setCounty('')
+            // setState('')
+            // setCountry('')
+            // setDateOfAcquisition(new Date())
+            // setCauseOfDeath('')
+            // setCBLength('')
+            // setZBreadth('')
+            // setMLength('')
+            // setFILength('')
+            // setMMRLength('')
+            // setNLength('')
+            // setCleaningMethod('')
+            // setNotes('')
+            // setImages([])
+            // setCredit('')
+            // setCopyrightInfo('')
         }
     }
 
@@ -263,7 +264,7 @@ const RodentForm = () => {
             </div>
             <div id="fade" className="popup-overlay"></div>
 
-            <form className='rodent' onSubmit={handleSubmit}>
+            <form className='rodent' onSubmit={handleSubmit} encType='multipart/form-data'>
                 <div className='form-header'>
                     <img src="/Logo.png" alt="logo" />
                     <h1>Rodent Form</h1><p>Submit your own rodents!</p>
@@ -487,11 +488,13 @@ const RodentForm = () => {
                     </div>
 
                     <div>
-                        <h3>Links<span>*</span></h3>
+                        <h3>Images<span>*</span></h3>
                         <input
+                            name='images'
                             type='file'
-                            onChange={(e) => setLinks(e.target.value)}
-                            value={links}
+                            // accept="image/*"
+                            onChange={(e) => setImages(e.target.files)}
+                            // value={images}
                             alt='image'
                             multiple
                             required
@@ -510,7 +513,7 @@ const RodentForm = () => {
                         />
                         <div className='form-checkbox' >
                             <input type="checkbox" id="private-collection" value="Private Collection" onChange={handleCredit} />
-                            <label for="private-collection">Private Collection</label><br />
+                            <label htmlFor="private-collection">Private Collection</label><br />
                         </div>
                     </div>
 
