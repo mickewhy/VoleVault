@@ -48,7 +48,6 @@ app.post('/submissions', upload.array('images'), async (req, res) => {
     const optionalDimensions = [FILength, MMRLength, NLength]
     const dimensions = [requiredDimensions, optionalDimensions]
 
-    const imageNames = []
     const imageLinks = []
     for (let i = 0; i < req.files.length; i++) {
         const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex')
@@ -57,19 +56,13 @@ app.post('/submissions', upload.array('images'), async (req, res) => {
             Bucket: bucketName,
             Body: req.files[i].buffer,
             Key: imageName,
-            ContentType: req.files[i].mimetype
+            ContentType: req.files[i].mimetype,
+            ACL: "public-read",
         }
         const uploadCommand = new PutObjectCommand(uploadParams)
         await s3.send(uploadCommand)
-        imageNames.push[imageName]
 
-        const getParams = {
-            Bucket: bucketName,
-            Key: imageName,
-        }
-    
-        const getCommand = new GetObjectCommand(getParams)
-        const url = await getSignedUrl(s3, getCommand)
+        let url = `https://${bucketName}.s3.${region}.amazonaws.com/${imageName}`
         imageLinks.push(url)
     }
 
