@@ -182,12 +182,10 @@ const RodentForm = () => {
         e.preventDefault()
         const username = user.username
         const isApproved = false
-
-        console.log('images', images)
         const rodent = { commonName, binomialName, suborder, family, sex, age, county, state, country, dateOfAcquisition, causeOfDeath, CBLength, ZBreadth, MLength, FILength, MMRLength, NLength, cleaningMethod, notes, credit, copyrightInfo, isApproved, username }
 
         const formData = new FormData()
-        formData.append("rodent", rodent)
+        formData.append("rodent", JSON.stringify(rodent))
         for (let i = 0; i < images.length; i++) {
             formData.append('images', images[i]);
         }

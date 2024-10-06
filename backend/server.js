@@ -1,6 +1,8 @@
 require('dotenv').config()
 const multer = require('multer')
 const { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } = require('@aws-sdk/client-s3')
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
+const crypto = require('crypto')
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
@@ -39,31 +41,40 @@ app.get('/', (req, res) => {
 
 // POST a single submission
 app.post('/submissions', upload.array('images'), async (req, res) => {
-    console.log('req.body', req.body)
-    console.log('req.files', req.files)
-    const { commonName, binomialName, suborder, family, sex, age, county, state, country, dateOfAcquisition, causeOfDeath, CBLength, ZBreadth, MLength, FILength, MMRLength, NLength, cleaningMethod, notes, credit, copyrightInfo, isApproved, username } = req.body.rodent
+    const rodentData = JSON.parse(req.body.rodent)
+    const { commonName, binomialName, suborder, family, sex, age, county, state, country, dateOfAcquisition, causeOfDeath, CBLength, ZBreadth, MLength, FILength, MMRLength, NLength, cleaningMethod, notes, credit, copyrightInfo, isApproved, username } = rodentData
     const origin = [county, state, country]
     const requiredDimensions = [CBLength, ZBreadth, MLength]
     const optionalDimensions = [FILength, MMRLength, NLength]
     const dimensions = [requiredDimensions, optionalDimensions]
-    const links = []
 
-
+    const imageNames = []
+    const imageLinks = []
     for (let i = 0; i < req.files.length; i++) {
+        const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex')
+        const imageName = generateFileName()
         const uploadParams = {
             Bucket: bucketName,
             Body: req.files[i].buffer,
-            Key: req.files[i].originalname,
+            Key: imageName,
             ContentType: req.files[i].mimetype
         }
+        const uploadCommand = new PutObjectCommand(uploadParams)
+        await s3.send(uploadCommand)
+        imageNames.push[imageName]
 
-        const command = new PutObjectCommand(uploadParams)
-        await s3.send(command)
+        const getParams = {
+            Bucket: bucketName,
+            Key: imageName,
+        }
+    
+        const getCommand = new GetObjectCommand(getParams)
+        const url = await getSignedUrl(s3, getCommand)
+        imageLinks.push(url)
     }
 
-
     try {
-        const rodent = await rodents.create({ commonName, binomialName, suborder, family, sex, age, origin, dateOfAcquisition, causeOfDeath, dimensions, cleaningMethod, notes, links, credit, copyrightInfo, isApproved, username })
+        const rodent = await rodents.create({ commonName, binomialName, suborder, family, sex, age, origin, dateOfAcquisition, causeOfDeath, dimensions, cleaningMethod, notes, imageLinks, credit, copyrightInfo, isApproved, username })
         res.status(200).json(rodent)
     }
     catch (err) {
