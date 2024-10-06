@@ -1,4 +1,5 @@
 <div align="center">
+  <!-- https://badges.pages.dev/ -->
   <img src="https://img.shields.io/badge/JavaScript-000?logo=javascript&logoColor=F7DF1E&style=for-the-badge" alt="JavaScript Badge"/>
   <img src="https://img.shields.io/badge/HTML-000?logo=html5&logoColor=E34F26&style=for-the-badge" alt="HTML5 Badge"/>
   <img src="https://img.shields.io/badge/CSS-000?logo=css3&logoColor=1572B6&style=for-the-badge" alt="CSS3 Badge"/>
@@ -10,6 +11,7 @@
   <br>
   <img src="https://img.shields.io/badge/Heroku-000?logo=heroku&logoColor=430098&style=for-the-badge" alt="Heroku Badge"/>
   <img src="https://img.shields.io/badge/Cloudflare-000?logo=cloudflare&logoColor=F38020&style=for-the-badge" alt="Cloudflare Badge"/>
+  <img src="https://img.shields.io/badge/Amazon%20Web%20Services-000?logo=amazonwebservices&logoColor=f90&style=for-the-badge" alt="Amazon Web Services Badge"/>
   <br>
   <img width="700" src= "./frontend/public/LogoText.png">
 </div>
