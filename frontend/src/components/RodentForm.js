@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import OptionMenu from './OptionMenu'
 import { handleZoom, handlePopUp } from '../pages/ImageDetails'
 import { useAuthContext } from '../hooks/useAuthContext'
@@ -176,7 +177,9 @@ const RodentForm = () => {
     const [credit, setCredit] = useState('')
     const [copyrightInfo, setCopyrightInfo] = useState('')
     const [error, setError] = useState('')
+    
     const { user } = useAuthContext()
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -222,6 +225,7 @@ const RodentForm = () => {
             // setImages([])
             // setCredit('')
             // setCopyrightInfo('')
+            navigate('/')
         }
     }
 
@@ -278,6 +282,7 @@ const RodentForm = () => {
                                 value={commonName}
                                 placeholder='Creeping Vole'
                                 required
+                                maxlength='30'
                             />
                         </div>
 
@@ -289,6 +294,7 @@ const RodentForm = () => {
                                 value={binomialName}
                                 placeholder='Microtus oregoni'
                                 required
+                                maxlength='30'
                             />
                         </div>
                     </div>
@@ -313,6 +319,7 @@ const RodentForm = () => {
                                 value={family}
                                 placeholder='Cricetidae'
                                 required
+                                maxlength='30'
                             />
                         </div>
                     </div>
@@ -349,6 +356,7 @@ const RodentForm = () => {
                                     onChange={(e) => setCounty(e.target.value)}
                                     value={county}
                                     placeholder='If unknown or inapplicable, leave blank'
+                                    maxlength='30'
                                 />
                             </div>
                             <div>
@@ -358,6 +366,7 @@ const RodentForm = () => {
                                     onChange={(e) => setState(e.target.value)}
                                     value={state}
                                     placeholder='If unknown or inapplicable, leave blank'
+                                    maxlength='30'
                                 />
                             </div>
                             <div>
@@ -367,6 +376,7 @@ const RodentForm = () => {
                                     onChange={(e) => setCountry(e.target.value)}
                                     value={country}
                                     placeholder='Required field'
+                                    maxlength='30'
                                 />
                             </div>
                         </div>
@@ -401,28 +411,34 @@ const RodentForm = () => {
                             <div>
                                 <p>Condylobasal Length</p>
                                 <textarea
-                                    type='text'
+                                    type="number"
                                     onChange={(e) => setCBLength(e.target.value)}
                                     value={CBLength}
                                     placeholder='Greatest length of the skull in mms'
+                                    required
+                                    maxlength='10'
                                 />
                             </div>
                             <div>
                                 <p>Zygomatic Breadth</p>
                                 <textarea
-                                    type='text'
+                                    type="number"
                                     onChange={(e) => setZBreadth(e.target.value)}
                                     value={ZBreadth}
                                     placeholder='Greatest length of the mandible in mms, not including the incisors'
+                                    required
+                                    maxlength='10'
                                 />
                             </div>
                             <div>
                                 <p>Mandible Length</p>
                                 <textarea
-                                    type='text'
+                                    type="number"
                                     onChange={(e) => setMLength(e.target.value)}
                                     value={MLength}
                                     placeholder='Greatest width of the skull in mms'
+                                    required
+                                    maxlength='10'
                                 />
                             </div>
                         </div>
@@ -437,28 +453,31 @@ const RodentForm = () => {
                             <div>
                                 <p>Foramen Incisivum Length</p>
                                 <textarea
-                                    type='text'
+                                    type="number"
                                     onChange={(e) => setFILength(e.target.value)}
                                     value={FILength}
                                     placeholder='Length of the incisive foramina in mms'
+                                    maxlength='10'
                                 />
                             </div>
                             <div>
                                 <p>Maxillary Molar Row Length</p>
                                 <textarea
-                                    type='text'
+                                    type="number"
                                     onChange={(e) => setMMRLength(e.target.value)}
                                     value={MMRLength}
                                     placeholder='Length of the upper molar row in mms'
+                                    maxlength='10'
                                 />
                             </div>
                             <div>
                                 <p>Nasal Length</p>
                                 <textarea
-                                    type='text'
+                                    type="number"
                                     onChange={(e) => setNLength(e.target.value)}
                                     value={NLength}
                                     placeholder='Length of the nasal bones in mms'
+                                    maxlength='10'
                                 />
                             </div>
                         </div>
@@ -482,6 +501,7 @@ const RodentForm = () => {
                             onChange={(e) => setNotes(e.target.value)}
                             value={notes}
                             placeholder='Add other details about the individual rodent / skull here.&#13;&#10;Ex: Is any damage to the skull present? Are there notable pathologies? If predated, what species culled it? What type of habitat was it found in?&#13;&#10;Please keep this section professional and as concise as possible.'
+                            maxlength='200'
                         />
                     </div>
 
@@ -508,6 +528,7 @@ const RodentForm = () => {
                             value={credit}
                             placeholder='Give yourself submission credit here.&#13;&#10;You may enter your full or abbreviated legal name, your facility, or an online pseudonym.&#13;&#10;If you don’t want public credit, select ‘Private Collection’.'
                             required
+                            maxlength='200'
                         />
                         <div className='form-checkbox' >
                             <input type="checkbox" id="private-collection" value="Private Collection" onChange={handleCredit} />
