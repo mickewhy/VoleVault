@@ -140,7 +140,8 @@ const ImageDetails = () => {
           <b><span>Origin:</span> {rodent.origin[0] || rodent.origin[1] || rodent.origin[2] ? (rodent.origin[0] ? rodent.origin[0] + ' ' : '') + (rodent.origin[1] ? rodent.origin[1] + ' ' : '') + (rodent.origin[2] ? rodent.origin[2] : '') : 'Unknown'}</b>
           <b><span>Cause of Death:</span> {rodent.causeOfDeath ? rodent.causeOfDeath : 'Unknown'}</b>
           <b><span>Required Dimensions:</span> {rodent.dimensions[0][0] + 'mm'} {rodent.dimensions[0][1] + 'mm'} {rodent.dimensions[0][2] + 'mm'}</b>
-          <b><span>Optional Dimensions:</span> {rodent.dimensions[1][0] + 'mm'} {rodent.dimensions[1][1] + 'mm'} {rodent.dimensions[1][2] + 'mm'}</b>
+          {(rodent.dimensions[1][0] || rodent.dimensions[1][1] || rodent.dimensions[1][2]) &&
+            <b><span>Optional Dimensions:</span> {rodent.dimensions[1][0] + 'mm'} {rodent.dimensions[1][1] + 'mm'} {rodent.dimensions[1][2] + 'mm'}</b>}
           <b><span>Cleaning Method:</span> {rodent.cleaningMethod ? rodent.cleaningMethod : 'Unknown'}</b>
           <b><span>Notes:</span> {rodent.notes ? rodent.notes : 'N/A'}</b>
           <b><span>Credit:</span> {rodent.credit}</b>
