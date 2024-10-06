@@ -27,6 +27,20 @@ const OptionMenu = ({ options, onSelect, placeholder }) => {
             inputWidth.current = inputRef.current.offsetWidth
     }, [isOpen])
 
+    useEffect(() => {
+        const closeOnClickOutside = (event) => {
+          if (inputRef.current && !inputRef.current.contains(event.target))
+            setIsOpen(false)
+        }
+    
+        if (isOpen)
+          document.addEventListener('click', closeOnClickOutside)
+    
+        return () => {
+          document.removeEventListener('click', closeOnClickOutside)
+        }
+      }, [isOpen])
+
     return (
         <div className={`option-menu${isOpen ? ' open' : ''}`}>
             <input
