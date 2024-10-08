@@ -73,7 +73,7 @@ app.post('/submissions', upload.array('images'), async (req, res) => {
 
 mongoose.connect(process.env.srv)
     .then(() => {
-        app.listen(process.env.port, () => {
+        app.listen(process.env.PORT || 4000, () => {
             console.log('Connected to Mongoose!')
         })
     })
