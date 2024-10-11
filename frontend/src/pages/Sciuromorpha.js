@@ -15,7 +15,7 @@ const Sciuromorpha = () => {
 
     useEffect(() => {
         const fetchSciuromorpha = async () => {
-            const response = await fetch('/collections/sciuromorpha')
+            const response = await fetch('https://volevault-backend-648df3ef860e.herokuapp.com/collections/sciuromorpha')
             const json = await response.json()
             if (response.ok)
                 setSciuromorpha(json)

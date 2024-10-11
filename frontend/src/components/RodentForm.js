@@ -192,7 +192,7 @@ const RodentForm = () => {
         for (let i = 0; i < images.length; i++) {
             formData.append('images', images[i]);
         }
-        const response = await fetch('/submissions', {
+        const response = await fetch('https://volevault-backend-648df3ef860e.herokuapp.com/submissions', {
             method: 'POST',
             body: formData,
         })

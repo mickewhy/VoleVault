@@ -7,7 +7,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchRodents = async () => {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/collections/rodents`)
+            const response = await fetch('https://volevault-backend-648df3ef860e.herokuapp.com/collections/rodents')
             console.log(process.env.REACT_APP_BACKEND_URL)
             const json = await response.json()
             if (response.ok)

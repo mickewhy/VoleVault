@@ -15,7 +15,7 @@ const Anomaluromorpha = () => {
 
     useEffect(() => {
         const fetchAnomaluromorpha = async () => {
-            const response = await fetch('/collections/anomaluromorpha')
+            const response = await fetch('https://volevault-backend-648df3ef860e.herokuapp.com/collections/anomaluromorpha')
             const json = await response.json()
             if (response.ok)
                 setAnomaluromorpha(json)

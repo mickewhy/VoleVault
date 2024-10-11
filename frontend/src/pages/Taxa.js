@@ -17,7 +17,7 @@ const Taxa = () => {
 
     useEffect(() => {
         const fetchRodents = async () => {
-            const response = await fetch("/collections/rodents")
+            const response = await fetch("https://volevault-backend-648df3ef860e.herokuapp.com/collections/rodents")
             const json = await response.json()
             if (response.ok)
                 setAllRodents(json)
