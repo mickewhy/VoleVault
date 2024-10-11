@@ -15,7 +15,7 @@ const Castorimorpha = () => {
 
     useEffect(() => {
         const fetchCastorimorpha = async () => {
-            const response = await fetch(`https://volevault-backend-648df3ef860e.herokuapp.com/test`)
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/collections/castorimorpha`)
             const json = await response.json()
             if (response.ok)
                 setCastorimorpha(json)
