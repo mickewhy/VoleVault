@@ -29,7 +29,8 @@ const Hystricomorpha = () => {
 
     useEffect(() => {
         const fetchHystricomorpha = async () => {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/collections/hystricomorpha`)
+            const url = process.env.REACT_APP_BACKEND_URL + '/collections/hystricomorpha'
+            const response = await fetch(url)
             const json = await response.json()
             if (response.ok)
                 setHystricomorpha(json)
