@@ -6,6 +6,7 @@ export const commonNames = {
     'Geomyidae': 'Pocket Gophers',
     'Heteromyidae': 'Kangaroo Rats and Pocket Mice',
 }
+    const BASE_URL = "https://volevault-backend-648df3ef860e.herokuapp.com"
 
 const Castorimorpha = () => {
     const navigate = useNavigate()
@@ -13,7 +14,6 @@ const Castorimorpha = () => {
     const [searchTerm, setSearchTerm] = useState(new URLSearchParams(window.location.search).get('search'))
     const [filteredCastorimorpha, setFilteredCastorimorpha] = useState([])
     
-    const BASE_URL = "https://volevault-backend-648df3ef860e.herokuapp.com"
     useEffect(() => {
         const fetchCastorimorpha = async () => {
             const response = await fetch(`${BASE_URL}/collections/castorimorpha`)
