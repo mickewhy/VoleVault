@@ -12,15 +12,11 @@ const Castorimorpha = () => {
     const [castorimorpha, setCastorimorpha] = useState(null)
     const [searchTerm, setSearchTerm] = useState(new URLSearchParams(window.location.search).get('search'))
     const [filteredCastorimorpha, setFilteredCastorimorpha] = useState([])
-
+    
+    const BASE_URL = "https://volevault-backend-648df3ef860e.herokuapp.com"
     useEffect(() => {
         const fetchCastorimorpha = async () => {
-            const response = await fetch("https://volevault-backend-648df3ef860e.herokuapp.com/collections/castorimorpha", {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                }
-            })
+            const response = await fetch(`${BASE_URL}/collections/castorimorpha`)
             const json = await response.json()
             if (response.ok)
                 setCastorimorpha(json)
