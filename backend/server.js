@@ -11,15 +11,7 @@ const userRoutes = require('./routes/userRoutes')
 const rodents = require('./models/rodentModel')
 
 //Middleware
-const corsOptions = {
-    origin: '*',
-    credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization', '*'],
-    methods: 'GET, POST, PUT, DELETE, OPTIONS',
-    exposedHeaders: ['Content-Type', 'Authorization']
-}
-
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(express.json())
 app.use('/collections', collectionRoutes)
 app.use('/user', userRoutes)
