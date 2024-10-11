@@ -29,8 +29,7 @@ const Hystricomorpha = () => {
 
     useEffect(() => {
         const fetchHystricomorpha = async () => {
-            const url = process.env.REACT_APP_BACKEND_URL + '/collections/hystricomorpha'
-            const response = await fetch(url)
+            const response = await fetch('https://volevault-backend-648df3ef860e.herokuapp.com/collections/hystricomorpha')
             const json = await response.json()
             if (response.ok)
                 setHystricomorpha(json)
