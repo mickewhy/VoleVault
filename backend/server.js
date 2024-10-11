@@ -4,12 +4,14 @@ const { S3Client, PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/cl
 const crypto = require('crypto')
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const app = express()
 const collectionRoutes = require('./routes/collectionRoutes')
 const userRoutes = require('./routes/userRoutes')
 const rodents = require('./models/rodentModel')
 
 //Middleware
+app.use(cors())
 app.use(express.json())
 app.use('/collections', collectionRoutes)
 app.use('/user', userRoutes)
