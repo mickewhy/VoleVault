@@ -8,6 +8,7 @@ const Home = () => {
     useEffect(() => {
         const fetchRodents = async () => {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/collections/rodents`)
+            console.log(process.env.REACT_APP_BACKEND_URL)
             const json = await response.json()
             if (response.ok)
                 setRodents(json)
