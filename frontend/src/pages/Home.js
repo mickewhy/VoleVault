@@ -4,11 +4,26 @@ import { useNavigate } from "react-router-dom"
 const Home = () => {
     const [rodents, setRodents] = useState([])
     const navigate = useNavigate()
+    const header = document.querySelector('header')
+    const root = document.documentElement
 
+    window.addEventListener('scroll', () => {
+        if (header) {
+            const headerHeight = header.offsetHeight
+            root.style.setProperty('--header-height', `${headerHeight}px`)
+        }
+    })
+
+    useEffect(() => {
+        if (header) {
+            const headerHeight = header.offsetHeight
+            root.style.setProperty('--header-height', `${headerHeight}px`)
+        }
+    }, [header, root.style])
+    
     useEffect(() => {
         const fetchRodents = async () => {
             const response = await fetch('https://volevault-backend-648df3ef860e.herokuapp.com/collections/rodents')
-            console.log(process.env.REACT_APP_BACKEND_URL)
             const json = await response.json()
             if (response.ok)
                 setRodents(json)
@@ -37,7 +52,7 @@ const Home = () => {
                     <h2>Recent Submissions</h2>
                     <div className="home-recents-images">
                         {rodents.slice(0, 5).map((rodent) => (
-                            <div className="image-grid">
+                            <div className="home-image-grid">
                                 <div className="image-wrapper"
                                     onClick={() => {
                                         navigate(`/collections/${rodent.suborder.toLowerCase()}/${rodent._id}`, { state: rodent })

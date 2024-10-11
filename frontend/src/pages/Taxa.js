@@ -28,7 +28,7 @@ const Taxa = () => {
     return (
         <div className="taxa">
             {allRodents && (
-                <div className="rodent-container">
+                <div className="taxa-container">
                     {Object.entries(
                         allRodents.reduce((groupedRodents, rodent) => {
                             const suborder = rodent.suborder

@@ -124,7 +124,8 @@ const BurgerMenu = () => {
               // borderBottomRightRadius: '10px',
               // backgroundColor: 'rgba(0, 0, 0, 0.5)',
               backgroundColor: '#111',
-              width: '50%',
+              width: `calc(100vw - 30px)`,
+              maxWidth: '768px',
               justifySelf: 'center',
               overflow: 'visible',
             }

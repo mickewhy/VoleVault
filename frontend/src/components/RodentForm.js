@@ -6,39 +6,39 @@ import { useAuthContext } from '../hooks/useAuthContext'
 
 export const copyrightOptions = [
     {
-        label: 'No Copyright',
+        displayText: 'No Copyright',
         image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png',
-        displayText: 'CC0',
+        label: 'CC0',
     },
     {
-        label: 'Attribution',
+        displayText: 'Attribution',
         image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png',
-        displayText: 'CC-BY',
+        label: 'CC-BY',
     },
     {
-        label: 'Attribution-NonCommercial',
+        displayText: 'Attribution-NonCommercial',
         image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc.png',
-        displayText: 'CC-BY-NC',
+        label: 'CC-BY-NC',
     },
     {
-        label: 'Attribution-NonCommercial-ShareAlike',
+        displayText: 'Attribution-NonCommercial-ShareAlike',
         image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png',
-        displayText: 'CC-BY-NC-SA',
+        label: 'CC-BY-NC-SA',
     },
     {
-        label: 'Attribution-NonCommercial-NoDerivs',
+        displayText: 'Attribution-NonCommercial-NoDerivs',
         image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-nd.png',
-        displayText: 'CC-BY-NC-ND',
+        label: 'CC-BY-NC-ND',
     },
     {
-        label: 'Attribution-NoDerivs',
+        displayText: 'Attribution-NoDerivs',
         image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nd.png',
-        displayText: 'CC-BY-ND',
+        label: 'CC-BY-ND',
     },
     {
-        label: 'Attribution-ShareAlike',
+        displayText: 'Attribution-ShareAlike',
         image: 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png',
-        displayText: 'CC-BY-SA',
+        label: 'CC-BY-SA',
     },
 ]
 

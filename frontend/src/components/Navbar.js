@@ -40,7 +40,7 @@ const Navbar = () => {
         <div className="header-left">
           <BurgerMenu />
           <Link to="/">
-            <img src="/LogoText.png" alt="VoleVault" style={{ maxWidth: `${scrollY > 0 ? 200 : 300}px` }} />
+            <img src="/LogoText.png" alt="VoleVault" style={{ maxWidth: `${scrollY > 0 ? 100 % window.innerWidth : 150 % window.innerWidth}px` }} />
           </Link>
         </div>
         <div className="header-right">

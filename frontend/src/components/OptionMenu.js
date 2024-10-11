@@ -9,6 +9,9 @@ const OptionMenu = ({ options, onSelect, placeholder }) => {
     const inputRef = useRef(null)
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState('')
+    const screenWidth = window.innerWidth
+    const imageMinWidth = 100
+    const imageMaxWidth = Math.min(screenWidth * 0.2, imageMinWidth)
 
     const handleClick = () => {
         setIsOpen(!isOpen)
@@ -25,21 +28,23 @@ const OptionMenu = ({ options, onSelect, placeholder }) => {
     useEffect(() => {
         if (inputRef.current)
             inputWidth.current = inputRef.current.offsetWidth
-    }, [isOpen])
+    }, [])
 
     useEffect(() => {
+        if (inputRef.current)
+            inputWidth.current = inputRef.current.offsetWidth
         const closeOnClickOutside = (event) => {
-          if (inputRef.current && !inputRef.current.contains(event.target))
-            setIsOpen(false)
+            if (inputRef.current && !inputRef.current.contains(event.target))
+                setIsOpen(false)
         }
-    
+
         if (isOpen)
-          document.addEventListener('click', closeOnClickOutside)
-    
+            document.addEventListener('click', closeOnClickOutside)
+
         return () => {
-          document.removeEventListener('click', closeOnClickOutside)
+            document.removeEventListener('click', closeOnClickOutside)
         }
-      }, [isOpen])
+    }, [isOpen])
 
     return (
         <div className={`option-menu${isOpen ? ' open' : ''}`}>
@@ -64,7 +69,7 @@ const OptionMenu = ({ options, onSelect, placeholder }) => {
                                 }}
                             >
                                 <ListItemIcon sx={{ color: 'white', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                                    {option.image && <img style={{ maxWidth: '100px', height: 'auto' }} src={option.image} alt={option.label} />}
+                                    {option.image && <img style={{ maxWidth: `${imageMaxWidth}px`, height: 'auto' }} src={option.image} alt={option.label} />}
                                     <ListItemText disableTypography primary={option.label} sx={{ color: 'white', fontFamily: "Barlow Semi Condensed" }} />
                                 </ListItemIcon>
                             </ListItemButton>
