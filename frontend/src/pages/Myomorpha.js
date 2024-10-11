@@ -24,6 +24,7 @@ const Myomorpha = () => {
         const fetchMyomorpha = async () => {
             try {
                 const response = await axios.get('https://volevault-backend-648df3ef860e.herokuapp.com/collections/myomorpha')
+                console.log(response)
                 setMyomorpha(response.data);
             } catch (error) {
                 console.error("Error fetching data:", error)
