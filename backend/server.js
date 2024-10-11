@@ -12,9 +12,9 @@ const rodents = require('./models/rodentModel')
 
 //Middleware
 app.use(cors(
-    // {
-    //     origin: 'https://volevault.com'
-    // }
+    {
+        origin: 'https://volevault.com'
+    }
 ))
 app.use(express.json())
 app.use('/collections', collectionRoutes)
