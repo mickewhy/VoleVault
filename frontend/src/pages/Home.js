@@ -80,7 +80,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="home-submissions">
-                <h2>Submission rules</h2>
+                <h2>Submission guidelines</h2>
                 <p>Information on submission rules and requirements, information on submission rules and requirements, information on submission rules and requirements, information on submission rules and requirements, information on submission rules and requirements, information on submission rules and requirements, information on submission rules and requirements, information on submission rules and requirements.</p>
                 <button id='style2' onClick={() => { navigate('/submissions') }}>Submissions Form</button>
             </div>
