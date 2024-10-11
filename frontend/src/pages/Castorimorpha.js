@@ -15,8 +15,9 @@ const Castorimorpha = () => {
 
     useEffect(() => {
         const fetchCastorimorpha = async () => {
-            console.log(process.env.REACT_APP_BACKEND_URL)
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/collections/castorimorpha`, {
+            const url = process.env.REACT_APP_BACKEND_URL + "/collections/castorimorpha"
+            console.log(url)
+            const response = await fetch(url, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
