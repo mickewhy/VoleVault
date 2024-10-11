@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from 'axios'
 
 export const commonNames = {
     'Dipodidae': 'Jerboas',
@@ -22,13 +21,10 @@ const Myomorpha = () => {
 
     useEffect(() => {
         const fetchMyomorpha = async () => {
-            try {
-                const response = await axios.get('https://volevault-backend-648df3ef860e.herokuapp.com/collections/myomorpha')
-                console.log(response)
-                setMyomorpha(response.data);
-            } catch (error) {
-                console.error("Error fetching data:", error)
-            }
+            const response = await fetch('https://volevault-backend-648df3ef860e.herokuapp.com/collections/myomorpha')
+            const json = await response.json()
+            if (response.ok)
+                setMyomorpha(json)
         }
         fetchMyomorpha()
     }, [])

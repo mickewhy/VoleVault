@@ -11,7 +11,9 @@ const userRoutes = require('./routes/userRoutes')
 const rodents = require('./models/rodentModel')
 
 //Middleware
-app.use(cors())
+app.use(cors({
+    origin: 'https://volevault.com'
+}))
 app.use(express.json())
 app.use('/collections', collectionRoutes)
 app.use('/user', userRoutes)
