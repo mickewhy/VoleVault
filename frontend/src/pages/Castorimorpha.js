@@ -15,7 +15,7 @@ const Castorimorpha = () => {
 
     useEffect(() => {
         const fetchCastorimorpha = async () => {
-            const response = await fetch(`${process.env.BACKEND_URL}/collections/castorimorpha`)
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/collections/castorimorpha`)
             const json = await response.json()
             if (response.ok)
                 setCastorimorpha(json)
