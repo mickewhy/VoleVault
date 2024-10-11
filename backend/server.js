@@ -13,7 +13,7 @@ const rodents = require('./models/rodentModel')
 //Middleware
 app.use(cors(
     {
-        origin: 'https://www.volevault.com'
+        origin: ['https://www.volevault.com', 'http://localhost:3000']
     }
 ))
 app.use(express.json())
