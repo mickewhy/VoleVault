@@ -4,36 +4,42 @@ const mongoose = require('mongoose')
 // Get all Anomaluromorpha spp.
 const getAnomaluromorpha = async (req, res) => {
     const rodentQuery = await rodents.find({ suborder: "Anomaluromorpha", isApproved: true }).sort({ family: 1, binomialName: 1 })
+    res.setHeader('Content-Type', 'application/json')
     res.status(200).json(rodentQuery)
 }
 
 // Get all Castorimorpha spp.
 const getCastorimorpha = async (req, res) => {
     const rodentQuery = await rodents.find({ suborder: "Castorimorpha", isApproved: true }).sort({ family: 1, binomialName: 1 })
+    res.setHeader('Content-Type', 'application/json')
     res.status(200).json(rodentQuery)
 }
 
 // Get all Hystricomorpha spp.
 const getHystricomorpha = async (req, res) => {
     const rodentQuery = await rodents.find({ suborder: "Hystricomorpha", isApproved: true }).sort({ family: 1, binomialName: 1 })
+    res.setHeader('Content-Type', 'application/json')
     res.status(200).json(rodentQuery)
 }
 
 // Get all Myomorpha spp.
 const getMyomorpha = async (req, res) => {
     const rodentQuery = await rodents.find({ suborder: "Myomorpha", isApproved: true }).sort({ family: 1, binomialName: 1 })
+    res.setHeader('Content-Type', 'application/json')
     res.status(200).json(rodentQuery)
 }
 
 // Get all Sciuromorpha spp.
 const getSciuromorpha = async (req, res) => {
     const rodentQuery = await rodents.find({ suborder: "Sciuromorpha", isApproved: true }).sort({ family: 1, binomialName: 1 })
+    res.setHeader('Content-Type', 'application/json')
     res.status(200).json(rodentQuery)
 }
 
 // Get all spp.
 const getRodents = async (req, res) => {
     const rodentQuery = await rodents.find({ isApproved: true }).sort({ family: 1, binomialName: 1 })
+    res.setHeader('Content-Type', 'application/json')
     res.status(200).json(rodentQuery)
 }
 
@@ -45,6 +51,7 @@ const deleteRodent = async (req, res) => {
     const rodentQuery = await rodents.findOneAndDelete({ _id: id })
     if (!rodentQuery)
         return res.status(400).json({ error: 'Rodent not found!' })
+    res.setHeader('Content-Type', 'application/json')
     res.status(200).json(rodentQuery)
 }
 
@@ -58,21 +65,9 @@ const updateRodent = async (req, res) => {
     })
     if (!rodentQuery)
         return res.status(400).json({ error: 'Rodent not found!' })
+    res.setHeader('Content-Type', 'application/json')
     res.status(200).json(rodentQuery)
 }
-
-function setContentTypeHeader(res) {
-    res.setHeader('Content-Type', 'application/json')
-}
-
-getAnomaluromorpha = setContentTypeHeader(getAnomaluromorpha)
-getCastorimorpha = setContentTypeHeader(getCastorimorpha)
-getHystricomorpha = setContentTypeHeader(getHystricomorpha)
-getMyomorpha = setContentTypeHeader(getMyomorpha)
-getSciuromorpha = setContentTypeHeader(getSciuromorpha)
-getRodents = setContentTypeHeader(getRodents)
-deleteRodent = setContentTypeHeader(deleteRodent)
-updateRodent = setContentTypeHeader(updateRodent)
 
 module.exports = {
     getAnomaluromorpha,
