@@ -61,6 +61,18 @@ const updateRodent = async (req, res) => {
     res.status(200).json(rodentQuery)
 }
 
+function setContentTypeHeader(res) {
+    res.setHeader('Content-Type', 'application/json')
+}
+
+getAnomaluromorpha = setContentTypeHeader(getAnomaluromorpha)
+getCastorimorpha = setContentTypeHeader(getCastorimorpha)
+getHystricomorpha = setContentTypeHeader(getHystricomorpha)
+getMyomorpha = setContentTypeHeader(getMyomorpha)
+getSciuromorpha = setContentTypeHeader(getSciuromorpha)
+getRodents = setContentTypeHeader(getRodents)
+deleteRodent = setContentTypeHeader(deleteRodent)
+updateRodent = setContentTypeHeader(updateRodent)
 
 module.exports = {
     getAnomaluromorpha,
