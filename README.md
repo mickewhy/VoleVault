@@ -16,4 +16,14 @@
   <img width="700" src= "./frontend/public/LogoText.png">
 </div>
 
+<div align="center">
+  <img height=200 src= "./demo/image1.png">
+  <img height=200 src= "./demo/image2.png">
+  <img height=200 src= "./demo/image3.png">
+  <img height=200 src= "./demo/image4.png">
+  <img height=200 src= "./demo/image5.png">
+  <img height=200 src= "./demo/image6.png">
+  <img height=200 src= "./demo/image7.png">
+  <img height=200 src= "./demo/image8.png">
+</div>
 ---
